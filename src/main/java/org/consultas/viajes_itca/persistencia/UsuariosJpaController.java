@@ -235,6 +235,32 @@ public class UsuariosJpaController implements Serializable {
             em.close();
         }
     }
+    
+    
+    public Usuarios finUsuarios(String email ,String pass){
+        EntityManager em = getEntityManager();
+        try {
+            Query query=em.createQuery("SELECT u FROM Usuarios u WHERE u.email=:email and u.password=:pass");
+            query.setParameter("email", email);
+            query.setParameter("pass", pass);
+            return (Usuarios) query.getSingleResult();
+        } finally {
+            em.close();
+        }
+    }
+
+
+    public boolean existeUsuario(String email) {
+        EntityManager em = getEntityManager();
+        try {
+            Query query = em.createQuery("SELECT u FROM Usuarios u WHERE u.email = :email");
+            query.setParameter("email", email);
+            return query.getResultList().size() > 0;
+        } finally {
+            em.close();
+        }
+    }
+
 
 
 

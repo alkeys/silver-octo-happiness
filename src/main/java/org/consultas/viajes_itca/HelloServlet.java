@@ -6,7 +6,6 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import org.consultas.viajes_itca.control.Control;
 import org.consultas.viajes_itca.entity.Usuarios;
-import org.consultas.viajes_itca.persistencia.ControljpaUasuario;
 
 @WebServlet(name = "helloServlet", value = "/hello-servlet")
 public class HelloServlet extends HttpServlet {
@@ -20,12 +19,12 @@ public class HelloServlet extends HttpServlet {
         response.setContentType("text/html");
         Usuarios usuario = new Usuarios();
         Control control = new Control();
-       usuario= control.BuscarUsuario("carlos744@gmail.com");
+       usuario= control.BuscarUsuariosEmailPass("carlos744@gmail.com", "soyLaOstia");
 
 
         PrintWriter out = response.getWriter();
         out.println("<html><body>");
-        out.println("<h1>" + usuario.getNombre()+usuario.getEmail() + "</h1>");
+        out.println("<h1>" + usuario.getNombre()+"\t"+usuario.getEmail()+"\t"+usuario.getPreferencias() + "</h1>");
         out.println("</body></html>");
     }
 
