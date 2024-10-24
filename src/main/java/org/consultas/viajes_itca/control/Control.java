@@ -18,19 +18,19 @@ public  class Control {
     }
 
 
-    public Usuarios BuscarIdUsuario(Object id){
+    public Usuarios getIdUsuario(Object id){
         Usuarios usuario = new Usuarios();
         usuario=controlUsuario.find(id);
         return usuario;
     }
 
-    public Usuarios BuscarUsuarioEmail(String email){
+    public Usuarios getUsuarioEmail(String email){
         Usuarios usuario = new Usuarios();
         usuario=controlUsuario.findUsuariosEmail(email);
         return usuario;
     }
     
-    public Usuarios BuscarUsuariosEmailPass(String email,String pass){
+    public Usuarios getUsuariosEmailPass(String email,String pass){
         return controlUsuario.findUsuariosEmailPass(email, pass);
     }
 

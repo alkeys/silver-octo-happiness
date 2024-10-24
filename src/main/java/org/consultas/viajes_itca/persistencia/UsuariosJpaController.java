@@ -245,8 +245,7 @@ public class UsuariosJpaController implements Serializable {
             query.setParameter("pass", pass);
             return (Usuarios) query.getSingleResult();
         } finally {
-            em.close();
-        }
+            em.close();    }
     }
 
 

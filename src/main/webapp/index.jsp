@@ -9,5 +9,16 @@
 </h1>
 <br/>
 <a href="hello-servlet">Hello Servlet</a>
+
+
+
+ingrse de credenciales correo y contraseña
+<form action="hello-servlet" method="get" >
+    <input type="text" name="correo" placeholder="correo">
+    <input type="password" name="pass" placeholder="contraseña">
+    <input type="submit" value="Ingresar">
+</form>
+
+
 </body>
 </html>

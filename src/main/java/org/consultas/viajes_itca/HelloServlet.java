@@ -19,7 +19,18 @@ public class HelloServlet extends HttpServlet {
         response.setContentType("text/html");
         Usuarios usuario = new Usuarios();
         Control control = new Control();
-       usuario= control.BuscarUsuariosEmailPass("carlos744@gmail.com", "soyLaOstia");
+
+        String email = request.getParameter("correo");
+        String pass = request.getParameter("pass");
+
+        usuario = control.getUsuariosEmailPass(email, pass);
+
+        if(usuario==null){
+            usuario = new Usuarios();
+            usuario.setNombre("Usuario no encontrado");
+            usuario.setEmail("Usuario no encontrado");
+            usuario.setPreferencias("Usuario no encontrado");
+        }
 
 
         PrintWriter out = response.getWriter();
