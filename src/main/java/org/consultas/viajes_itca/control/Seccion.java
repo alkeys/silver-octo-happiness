@@ -26,6 +26,15 @@ public void doGet(HttpServletRequest request, HttpServletResponse response) thro
         out.println("<h1>Seccion</h1>");
         out.println("</body></html>");
     }
+
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        response.setContentType("text/html");
+        PrintWriter out = response.getWriter();
+        out.println("<html><body>");
+        out.println("<h1>Seccion</h1>");
+        out.println("</body></html>");
+    }
+
     public void destroy() {
     }
 }

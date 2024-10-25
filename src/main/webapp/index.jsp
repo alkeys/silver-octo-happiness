@@ -12,7 +12,7 @@
     <div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
         <div class="card p-4 shadow" style="width: 25rem;">
             <h3 class="text-center mb-4">Iniciar Sesión</h3>
-            <form action="/Seccion" method="get">
+            <form action="/Seccion" method="post">
                 <div class="form-group">
                     <label for="email">Correo Electrónico</label>
                     <input type="email" class="form-control" id="email" name="email" placeholder="Ingresa tu correo" required>
