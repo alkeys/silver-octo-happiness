@@ -6,6 +6,7 @@
     <class>org.consultas.viajes_itca.entity.ViajesPorHacer</class>
     <class>org.consultas.viajes_itca.entity.Destinos</class>
     <class>org.consultas.viajes_itca.entity.Favoritos</class>
+    <class>org.consultas.viajes_itca.entity.ImgDestino</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://sql10.freesqldatabase.com:3306/sql10740299"/>

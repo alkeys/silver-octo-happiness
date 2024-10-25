@@ -33,6 +33,9 @@ import javax.persistence.Table;
     @NamedQuery(name = "Destinos.findByPopularidad", query = "SELECT d FROM Destinos d WHERE d.popularidad = :popularidad")})
 public class Destinos implements Serializable {
 
+    @jakarta.persistence.OneToMany(mappedBy = "idDestino")
+    private Collection<ImgDestino> imgDestinoCollection;
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -148,6 +151,14 @@ public class Destinos implements Serializable {
     @Override
     public String toString() {
         return "org.consultas.viajes_itca.entity.Destinos[ destinoId=" + destinoId + " ]";
+    }
+
+    public Collection<ImgDestino> getImgDestinoCollection() {
+        return imgDestinoCollection;
+    }
+
+    public void setImgDestinoCollection(Collection<ImgDestino> imgDestinoCollection) {
+        this.imgDestinoCollection = imgDestinoCollection;
     }
     
 }

@@ -2,15 +2,17 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package org.consultas.viajes_itca.control;
+package org.consultas.viajes_itca.Servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import jakarta.servlet.ServletException;
+
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.consultas.viajes_itca.control.Control;
+import org.consultas.viajes_itca.entity.Usuarios;
 
 /**
  *
@@ -23,7 +25,7 @@ public void doGet(HttpServletRequest request, HttpServletResponse response) thro
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
         out.println("<html><body>");
-        out.println("<h1>Seccion</h1>");
+        out.println("<h1>Que haces aqui papu</h1>");
         out.println("</body></html>");
     }
 
@@ -34,9 +36,16 @@ public void doGet(HttpServletRequest request, HttpServletResponse response) thro
         Control control = new Control();
         PrintWriter out = response.getWriter();
         if (control.ValidarUsuario(email, password)) {
-            out.println("<html><body>");
-            out.println("<h1>Usuario Valido</h1>");
-            out.println("</body></html>");
+            Usuarios usuario = control.getUsuarioEmail(email);
+            if (usuario != null) {
+                request.getSession().setAttribute("usuario", usuario);
+              if (usuario.getNombre().equalsIgnoreCase("admin")) {
+                    response.sendRedirect("admin.jsp");
+                } else {
+                    response.sendRedirect("Pages/home.jsp");
+                }
+            }
+
         } else {
             out.println("<html><body>");
             out.println("<h1>Usuario Invalido</h1>");

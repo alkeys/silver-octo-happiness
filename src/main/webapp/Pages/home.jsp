@@ -1,4 +1,4 @@
-<%-- 
+<%@ page import="org.consultas.viajes_itca.entity.Usuarios" %><%--
     Document   : home
     Created on : 24 oct 2024, 20:01:34
     Author     : enocc
@@ -6,6 +6,13 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%
+    Usuarios usuario = (Usuarios) session.getAttribute("usuario");
+    if (usuario == null) {
+        response.sendRedirect("index.jsp");
+    }
+%>
+
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -36,7 +43,7 @@
                         <a class="nav-link" href="analisis.html">Análisis Personalizado</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link btn btn-outline-primary" href="login.html">Cerrar Sesión</a>
+                        <a class="nav-link btn btn-outline-primary" href="../Cerrar-Sesion">Cerrar Sesión</a>
                     </li>
 
                 </ul>

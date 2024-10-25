@@ -1,4 +1,4 @@
-package org.consultas.viajes_itca;
+package org.consultas.viajes_itca.Servlet;
 
 import java.io.*;
 
