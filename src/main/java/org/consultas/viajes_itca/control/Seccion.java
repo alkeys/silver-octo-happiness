@@ -29,10 +29,22 @@ public void doGet(HttpServletRequest request, HttpServletResponse response) thro
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("text/html");
+        String email = request.getParameter("email");
+        String password = request.getParameter("password");
+        Control control = new Control();
         PrintWriter out = response.getWriter();
-        out.println("<html><body>");
-        out.println("<h1>Seccion</h1>");
-        out.println("</body></html>");
+        if (control.ValidarUsuario(email, password)) {
+            out.println("<html><body>");
+            out.println("<h1>Usuario Valido</h1>");
+            out.println("</body></html>");
+        } else {
+            out.println("<html><body>");
+            out.println("<h1>Usuario Invalido</h1>");
+            out.println("</body></html>");
+        }
+
+
+
     }
 
     public void destroy() {

@@ -4,11 +4,8 @@
  */
 package org.consultas.viajes_itca.persistencia;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
+import javax.persistence.*;
 import java.io.Serializable;
-import javax.persistence.Query;
-import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import org.consultas.viajes_itca.entity.ViajesPorHacer;
@@ -230,23 +227,34 @@ public class UsuariosJpaController implements Serializable {
         try {
             Query query = em.createQuery("SELECT u FROM Usuarios u WHERE u.email = :email");
             query.setParameter("email", email);
-            return (Usuarios) query.getSingleResult();
+            try {
+                return (Usuarios) query.getSingleResult();
+            } catch (NoResultException e) {
+                return null;
+            }
         } finally {
             em.close();
         }
     }
     
     
-    public Usuarios finUsuarios(String email ,String pass){
+
+    public Usuarios finUsuarios(String email, String pass) {
         EntityManager em = getEntityManager();
         try {
-            Query query=em.createQuery("SELECT u FROM Usuarios u WHERE u.email=:email and u.password=:pass");
+            Query query = em.createQuery("SELECT u FROM Usuarios u WHERE u.email = :email AND u.password = :pass");
             query.setParameter("email", email);
             query.setParameter("pass", pass);
-            return (Usuarios) query.getSingleResult();
+            try {
+                return (Usuarios) query.getSingleResult();
+            } catch (NoResultException e) {
+                return null;
+            }
         } finally {
-            em.close();    }
+            em.close();
+        }
     }
+
 
 
     public boolean existeUsuario(String email) {

@@ -18,6 +18,16 @@ public  class Control {
     }
 
 
+    public boolean ValidarUsuario(String email, String pass){
+        Usuarios usuario = new Usuarios();
+        usuario=controlUsuario.findUsuariosEmailPass(email, pass);
+        if(usuario!=null){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     public Usuarios getIdUsuario(Object id){
         Usuarios usuario = new Usuarios();
         usuario=controlUsuario.find(id);
