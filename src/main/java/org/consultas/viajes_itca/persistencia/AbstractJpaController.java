@@ -92,5 +92,19 @@ public abstract class AbstractJpaController<T> implements Serializable {
         }
     }
 
+
+    public List<T> findEntities(int maxResults, int firstResult) {
+        EntityManager em = getEntityManager();
+        try {
+            CriteriaQuery<T> cq = em.getCriteriaBuilder().createQuery(entityClass);
+            cq.select(cq.from(entityClass));
+            return em.createQuery(cq).setMaxResults(maxResults).setFirstResult(firstResult).getResultList();
+        } finally {
+            em.close();
+        }
+    }
+
+
+
     protected abstract Object getId(T entity);
 }

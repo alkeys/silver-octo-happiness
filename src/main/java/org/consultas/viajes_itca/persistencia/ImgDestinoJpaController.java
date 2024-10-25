@@ -4,13 +4,13 @@
  */
 package org.consultas.viajes_itca.persistencia;
 
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import java.io.Serializable;
-import jakarta.persistence.Query;
-import jakarta.persistence.EntityNotFoundException;
-import jakarta.persistence.criteria.CriteriaQuery;
-import jakarta.persistence.criteria.Root;
+import javax.persistence.Query;
+import javax.persistence.EntityNotFoundException;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import java.util.List;
 import org.consultas.viajes_itca.entity.Destinos;
 import org.consultas.viajes_itca.entity.ImgDestino;
@@ -181,5 +181,15 @@ public class ImgDestinoJpaController implements Serializable {
             em.close();
         }
     }
-    
+
+    public List<ImgDestino> findImgDestinos(List<Destinos> destinos) {
+        EntityManager em = getEntityManager();
+        try {
+            Query q = em.createQuery("SELECT i FROM ImgDestino i WHERE i.idDestino IN :destinos");
+            q.setParameter("destinos", destinos);
+            return q.getResultList();
+        } finally {
+            em.close();
+        }
+    }
 }

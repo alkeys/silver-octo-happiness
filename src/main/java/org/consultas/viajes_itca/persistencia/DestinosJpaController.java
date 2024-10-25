@@ -4,13 +4,13 @@
  */
 package org.consultas.viajes_itca.persistencia;
 
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import java.io.Serializable;
-import jakarta.persistence.Query;
-import jakarta.persistence.EntityNotFoundException;
-import jakarta.persistence.criteria.CriteriaQuery;
-import jakarta.persistence.criteria.Root;
+import javax.persistence.Query;
+import javax.persistence.EntityNotFoundException;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import org.consultas.viajes_itca.entity.ViajesPorHacer;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -289,5 +289,27 @@ public class DestinosJpaController implements Serializable {
             em.close();
         }
     }
-    
+
+    public List<Destinos> findDestinosMasValorados() {
+        EntityManager em = getEntityManager();
+        try {
+            Query query = em.createQuery("SELECT d FROM Destinos d ORDER BY d.popularidad DESC");
+            query.setMaxResults(5);
+            return query.getResultList();
+        } finally {
+            em.close();
+        }
+    }
+
+    public List<Destinos> findDestinosMasValorados(int i) {
+        EntityManager em = getEntityManager();
+        try {
+            Query query = em.createQuery("SELECT d FROM Destinos d ORDER BY d.popularidad DESC");
+            query.setMaxResults(i);
+            return query.getResultList();
+        } finally {
+            em.close();
+        }
+    }
+
 }

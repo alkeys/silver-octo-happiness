@@ -1,4 +1,8 @@
-<%@ page import="org.consultas.viajes_itca.entity.Usuarios" %><%--
+<%@ page import="org.consultas.viajes_itca.entity.Usuarios" %>
+<%@ page import="java.util.List" %>
+<%@ page import="org.consultas.viajes_itca.entity.Destinos" %>
+<%@ page import="org.consultas.viajes_itca.entity.ImgDestino" %>
+<%@ page import="org.consultas.viajes_itca.control.Control" %><%--
     Document   : home
     Created on : 24 oct 2024, 20:01:34
     Author     : enocc
@@ -11,6 +15,9 @@
     if (usuario == null) {
         response.sendRedirect("index.jsp");
     }
+    List<Destinos> destinos = (List<Destinos>) session.getAttribute("destinos");
+    Control control = new Control();
+    List<ImgDestino> imgDestinos = control.getImgDestinos(destinos);
 %>
 
 <html lang="es">
@@ -21,6 +28,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 </head>
 <body>
+
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
@@ -94,16 +102,25 @@
     <div class="container my-5">
         <h2 class="text-center mb-4">Destinos Populares</h2>
         <div class="row">
+
+            <%
+                int i = 0;
+                for (Destinos destino : destinos) {
+            %>
             <div class="col-md-4">
                 <div class="card">
-                    <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Playa">
+                    <img src="<%=imgDestinos.get(i).getUrl()%>" class="card-img-top" alt="Playa">
                     <div class="card-body">
-                        <h5 class="card-title">Cancún, México</h5>
-                        <p class="card-text">Clima: Tropical | Popularidad: Alta</p>
+                        <h5 class="card-title"><%=destino.getNombre()%>,<%=destino.getPais()%></h5>
+                        <p class="card-text">Clima: <%=destino.getClima()%> | Popularidad: <%=destino.getPopularidad()%></p>
                         <a href="detalle-destino.html" class="btn btn-outline-primary w-100">Ver Detalles</a>
                     </div>
                 </div>
             </div>
+            <%
+                    i++;
+                }%>
+
             <div class="col-md-4">
                 <div class="card">
                     <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Montaña">

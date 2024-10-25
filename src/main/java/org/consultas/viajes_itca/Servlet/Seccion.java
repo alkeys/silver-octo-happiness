@@ -6,12 +6,14 @@ package org.consultas.viajes_itca.Servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.consultas.viajes_itca.control.Control;
+import org.consultas.viajes_itca.entity.Destinos;
 import org.consultas.viajes_itca.entity.Usuarios;
 
 /**
@@ -31,14 +33,17 @@ public void doGet(HttpServletRequest request, HttpServletResponse response) thro
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("text/html");
-        String email = request.getParameter("email");
-        String password = request.getParameter("password");
         Control control = new Control();
+         String email = request.getParameter("email");
+        String password = request.getParameter("password");
+
         PrintWriter out = response.getWriter();
         if (control.ValidarUsuario(email, password)) {
             Usuarios usuario = control.getUsuarioEmail(email);
             if (usuario != null) {
                 request.getSession().setAttribute("usuario", usuario);
+                List<Destinos> destinos = control.getDestinosMasValorados(3);
+                request.getSession().setAttribute("destinos", destinos);
               if (usuario.getNombre().equalsIgnoreCase("admin")) {
                     response.sendRedirect("admin.jsp");
                 } else {
