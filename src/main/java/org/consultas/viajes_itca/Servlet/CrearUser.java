@@ -20,15 +20,22 @@ public class CrearUser extends HelloServlet{
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         String preferencias = request.getParameter("preferencia");
+        Control control=new Control();
+        Usuarios usuarios1=control.getUsuarioEmail(email);
+        
+        if(usuarios1==null){
         Usuarios user = new Usuarios();
         user.setNombre(nombre);
         user.setEmail(email);
         user.setPassword(password);
         user.setPreferencias(preferencias);
-        Control control = new Control();
         control.crearUsuario(user);
+        response.sendRedirect("Pages/registroconExito.jsp");
+        }else{
         response.sendRedirect("index.jsp");
-
+        }
+        
+        
     }
 
 }
