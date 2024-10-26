@@ -17,17 +17,17 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
-            <a class="navbar-brand" href="index.html">Agencia de Viajes</a>
+            <a class="navbar-brand" href="../index.jsp">Agencia de Viajes</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="login.html">Iniciar Sesión</a>
+                        <a class="nav-link" href="../Pages/iniciaSession.jsp">Iniciar Sesión</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link btn btn-primary text-white" href="registro.html">Registrarse</a>
+                        <a class="nav-link btn btn-primary text-white" href="Registrase.jsp">Registrarse</a>
                     </li>
                 </ul>
             </div>
@@ -74,7 +74,7 @@
                     </div>
                     <button type="submit" class="btn btn-primary w-100">Registrarse</button>
                 </form>
-                <p class="text-center mt-3">¿Ya tienes una cuenta? <a href="login.html">Inicia sesión aquí</a></p>
+                <p class="text-center mt-3">¿Ya tienes una cuenta? <a href="../Pages/iniciaSession.jsp">Inicia sesión aquí</a></p>
             </div>
         </div>
     </div>
