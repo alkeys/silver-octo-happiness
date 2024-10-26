@@ -5,7 +5,7 @@ import org.consultas.viajes_itca.entity.Usuarios;
 
 public class ControlUsuario extends AbstractJpaController<Usuarios>{
     private  EntityManagerFactory emf;
-    UsuariosJpaController control=null;
+   private  UsuariosJpaController control=null;
 
     public ControlUsuario(EntityManagerFactory emf, Class<Usuarios> entityClass) {
         super(emf, entityClass);
