@@ -39,18 +39,18 @@
         <div class="row justify-content-center">
             <div class="col-md-6">
                 <h2 class="text-center mb-4">Crear una Cuenta</h2>
-                <form>
+                <form action="../CrearUser" method="post">
                     <div class="mb-3">
                         <label for="nombre" class="form-label">Nombre Completo</label>
-                        <input type="text" class="form-control" id="nombre" placeholder="Introduce tu nombre completo" required>
+                        <input type="text" class="form-control" id="nombre" name="nombre"  placeholder="Introduce tu nombre completo" required>
                     </div>
                     <div class="mb-3">
                         <label for="email" class="form-label">Correo Electrónico</label>
-                        <input type="email" class="form-control" id="email" placeholder="Introduce tu correo" required>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Introduce tu correo" required>
                     </div>
                     <div class="mb-3">
                         <label for="password" class="form-label">Contraseña</label>
-                        <input type="password" class="form-control" id="password" placeholder="Introduce una contraseña" required>
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Introduce una contraseña" required>
                     </div>
                     <div class="mb-3">
                         <label for="confirmPassword" class="form-label">Confirmar Contraseña</label>
@@ -58,7 +58,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="preferencia" class="form-label">Preferencias de Viaje</label>
-                        <select class="form-select" id="preferencia" required>
+                        <select class="form-select" id="preferencia"  name="preferencia" required>
                             <option selected disabled>Selecciona tus preferencias...</option>
                             <option value="playa">Playa</option>
                             <option value="montaña">Montaña</option>

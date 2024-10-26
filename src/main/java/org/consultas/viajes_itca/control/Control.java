@@ -81,4 +81,7 @@ public  class Control {
     }
 
 
+    public void crearUsuario(Usuarios user) {
+        controlUsuario.create(user);
+    }
 }

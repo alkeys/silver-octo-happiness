@@ -12,12 +12,16 @@
 <!DOCTYPE html>
 <%
     Usuarios usuario = (Usuarios) session.getAttribute("usuario");
+
     if (usuario == null) {
-        response.sendRedirect("index.jsp");
-    }
+        response.sendRedirect("../../index.jsp");
+    }else {
+            Control control = new Control();
+    List<ImgDestino> imgDestinos=null;
     List<Destinos> destinos = (List<Destinos>) session.getAttribute("destinos");
-    Control control = new Control();
-    List<ImgDestino> imgDestinos = control.getImgDestinos(destinos);
+    imgDestinos = control.getImgDestinos(destinos);
+
+
 %>
 
 <html lang="es">
@@ -155,3 +159,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+<%
+    }
+%>
