@@ -6,6 +6,13 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+
+<%
+        
+
+
+
+%>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -37,7 +44,7 @@
                         <a class="nav-link" href="analisis.html">Análisis y Reportes</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link btn btn-outline-primary" href="../Cerrar-Sesion">Cerrar Sesión</a>
+                        <a class="nav-link btn btn-outline-primary" href="../../Cerrar-Sesion">Cerrar Sesión</a>
                     </li>
                 </ul>
             </div>

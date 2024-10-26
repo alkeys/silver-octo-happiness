@@ -32,8 +32,10 @@ public class CrearUser extends HelloServlet{
         control.crearUsuario(user);
         response.sendRedirect("Pages/registroconExito.jsp");
         }else{
-        response.sendRedirect("index.jsp");
+        response.sendRedirect("Pages/correoYaRegistrado.jsp");
         }
+        
+        
         
         
     }

@@ -44,8 +44,8 @@ public void doGet(HttpServletRequest request, HttpServletResponse response) thro
                 request.getSession().setAttribute("usuario", usuario);
                 List<Destinos> destinos = control.getDestinosMasValorados(3);
                 request.getSession().setAttribute("destinos", destinos);
-              if (usuario.getNombre().equalsIgnoreCase("admin")) {
-                    response.sendRedirect("admin.jsp");
+              if (usuario.getNombre().equalsIgnoreCase("admin")&& usuario.getEmail().equalsIgnoreCase("admin@admin.com")) {
+                    response.sendRedirect("Pages/admin/panelAdmin.jsp");
                 } else {
                     response.sendRedirect("Pages/user/home.jsp");
                 }

@@ -52,7 +52,7 @@
         <div class="overlay text-center">
             <h1 class="display-4">¡Descubre el Mundo con Nosotros!</h1>
             <p class="lead">Organiza tu próxima aventura y vive experiencias inolvidables.</p>
-            <a href="explorar.html" class="btn btn-outline-light btn-lg mt-3">Explorar Destinos</a>
+         
         </div>
     </div>
 
