@@ -25,7 +25,7 @@
         <div class="alert alert-success" role="alert">
             ¡Te has registrado con éxito! Ahora puedes acceder a todas las funciones de nuestra plataforma.
         </div>
-        <a href="home.html" class="btn btn-primary">Volver al Inicio</a>
+        <a href="../index.jsp" class="btn btn-primary">Volver al Inicio</a>
     </div>
 
     <!-- Footer -->
