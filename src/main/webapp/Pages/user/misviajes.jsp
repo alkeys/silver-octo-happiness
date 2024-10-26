@@ -1,3 +1,6 @@
+<%@ page import="org.consultas.viajes_itca.entity.Usuarios" %>
+
+
 <%-- 
     Document   : misviajes
     Created on : 25 oct 2024, 21:13:24
@@ -6,6 +9,19 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+
+<%
+
+ Usuarios usuario = (Usuarios) session.getAttribute("usuario");
+if (usuario == null) {
+        response.sendRedirect("../../index.jsp");
+    }
+    
+
+
+%>
+
+
 <html lang="es">
 <head>
     <meta charset="UTF-8">
