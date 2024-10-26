@@ -37,10 +37,10 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="login.html">Iniciar Sesión</a>
+                        <a class="nav-link" href="Pages/iniciaSession.jsp">Iniciar Sesión</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link btn btn-primary text-white ms-2" href="registro.html">Registrarse</a>
+                        <a class="nav-link btn btn-primary text-white ms-2" href="Pages/Registrase.jsp">Registrarse</a>
                     </li>
                 </ul>
             </div>
