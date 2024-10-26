@@ -47,7 +47,7 @@ public void doGet(HttpServletRequest request, HttpServletResponse response) thro
               if (usuario.getNombre().equalsIgnoreCase("admin")) {
                     response.sendRedirect("admin.jsp");
                 } else {
-                    response.sendRedirect("Pages/home.jsp");
+                    response.sendRedirect("Pages/user/home.jsp");
                 }
             }
 

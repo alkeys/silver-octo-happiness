@@ -34,9 +34,8 @@
                         <a class="nav-link" href="perfilUsuario.jsp">Perfil</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link btn btn-outline-primary" href="../Cerrar-Sesion">Cerrar Sesión</a>
+                        <a class="nav-link btn btn-outline-primary" href="../../Cerrar-Sesion">Cerrar Sesión</a>
                     </li>
-
                 </ul>
             </div>
         </div>
