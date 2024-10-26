@@ -25,20 +25,18 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="explorar.html">Explorar Destinos</a>
+                        <a class="nav-link" href="home.jsp">Explorar Destinos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="mis-viajes.html">Mis Viajes</a>
+                        <a class="nav-link" href="misviajes.jsp">Mis Viajes</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="perfil.html">Perfil</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="analisis.html">Análisis Personalizado</a>
+                        <a class="nav-link" href="perfilUsuario.jsp">Perfil</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link btn btn-outline-primary" href="../Cerrar-Sesion">Cerrar Sesión</a>
                     </li>
+
                 </ul>
             </div>
         </div>
