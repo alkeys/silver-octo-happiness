@@ -55,17 +55,34 @@
         <h2 class="text-center mb-4">Añadir Nuevo Destino</h2>
         <form id="formDestino" class="mb-5">
             <div class="row">
+         <div class="col-md-4">
+            <label for="tipoDestino" class="form-label">Tipo de Destino</label>
+            <select class="form-select" id="tipoDestino" name="tipoDestino">
+                <option selected>Selecciona un tipo...</option>
+                <option value="playa">Playa</option>
+                <option value="montaña">Montaña</option>
+                <option value="ciudad">Ciudad</option>
+                <option value="aventura">Aventura</option>
+            </select>
+        </div>
                 <div class="col-md-4">
-                    <label for="nombreDestino" class="form-label">Nombre del Destino</label>
-                    <input type="text" class="form-control" id="nombreDestino" required>
-                </div>
-                <div class="col-md-4">
-                    <label for="tipoDestino" class="form-label">Tipo de Destino</label>
+                    <label for="tipoDestino" class="form-label">Nombre del Destino</label>
                     <input type="text" class="form-control" id="tipoDestino" required>
                 </div>
                 <div class="col-md-4">
-                    <label for="climaDestino" class="form-label">Clima</label>
-                    <input type="text" class="form-control" id="climaDestino" required>
+                 <div class="col-md-4 mb-3">
+                    <label for="clima" class="form-label">Clima</label>
+                    <select class="form-select" id="clima" name="clima">
+                        <option value="todos">Todos</option>
+                        <option value="calido">Cálido</option>
+                        <option value="frio">Frío</option>
+                        <option value="templado">Templado</option>
+                    </select>
+                </div>
+                </div>
+                 <div class="col-md-4">
+                    <label for="nombrepais" class="form-label">Nombre del Pais</label>
+                    <input type="text" class="form-control" id="nombrepais" name="nombrepais" required>
                 </div>
             </div>
             <div class="row mb-3">
