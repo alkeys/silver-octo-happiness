@@ -46,10 +46,6 @@ public void doGet(HttpServletRequest request, HttpServletResponse response) thro
                 request.getSession().setAttribute("usuario", usuario);
                 List<Destinos> destinos = control.getDestinosMasValorados(3);
                 List<Destinos> destinos2 = control.getDestinos(50,0);
-                List<Favoritos> favoritos = control.obtenerFavoritosList(usuario);
-                List<ViajesPorHacer> viajes = control.obtenerViajesPorHacerList(usuario);
-                request.getSession().setAttribute("viajes", viajes);
-                request.getSession().setAttribute("favoritos", favoritos);
                 request.getSession().setAttribute("destinos2", destinos2);
                 request.getSession().setAttribute("destinos", destinos);
               if (usuario.getNombre().equalsIgnoreCase("admin")&& usuario.getEmail().equalsIgnoreCase("admin@admin.com")) {

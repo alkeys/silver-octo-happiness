@@ -43,10 +43,10 @@
                     <a class="nav-link" href="home.jsp">Explorar Destinos</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="misviajes.jsp">Mis Viajes</a>
+                    <a class="nav-link" href="../../CargarViajes">Mis Viajes</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="misfavoritos.jsp">Mis Favoritos</a>
+                    <a class="nav-link active" href="../../CargarFav" >Mis Favoritos</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="perfilUsuario.jsp">Perfil</a>
@@ -54,7 +54,6 @@
                 <li class="nav-item">
                     <a class="nav-link btn btn-outline-primary" href="../../Cerrar-Sesion">Cerrar Sesión</a>
                 </li>
-
             </ul>
         </div>
     </div>

@@ -1,4 +1,4 @@
-package org.consultas.viajes_itca.Servlet;
+package org.consultas.viajes_itca.Servlet.Crear;
 
 
 import jakarta.servlet.ServletException;

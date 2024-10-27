@@ -1,4 +1,4 @@
-package org.consultas.viajes_itca.Servlet;
+package org.consultas.viajes_itca.Servlet.AgregarData;
 
 
 import jakarta.servlet.annotation.WebServlet;
