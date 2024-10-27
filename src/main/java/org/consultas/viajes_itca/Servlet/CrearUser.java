@@ -34,10 +34,7 @@ public class CrearUser extends HelloServlet{
         }else{
         response.sendRedirect("Pages/correoYaRegistrado.jsp");
         }
-        
-        
-        
-        
+
     }
 
 }

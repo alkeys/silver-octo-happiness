@@ -84,4 +84,8 @@ public  class Control {
     public void crearUsuario(Usuarios user) {
         controlUsuario.create(user);
     }
+
+    public void updateUsuario(Usuarios user) throws Exception {
+        controlUsuario.edit(user);
+    }
 }

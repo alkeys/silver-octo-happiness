@@ -62,44 +62,38 @@ if (usuario == null) {
     <!-- Formulario de Información Personal -->
     <div class="container my-5">
         <h2 class="text-center mb-4">Actualizar Información Personal</h2>
-        <form>
+        <form action="../../Modificar-User" method="post">
             <div class="mb-3">
-                <label for="nombre" class="form-label">Nombre Completo</label>
-                <input type="text" class="form-control" id="nombre" placeholder="Introduce tu nombre completo" required>
+                <label for="nombre" class="form-label"  >Nombre Completo</label>
+                <input type="text" class="form-control" name="nombre" id="nombre" placeholder="<%=usuario.getNombre()%>" required>
             </div>
             <div class="mb-3">
                 <label for="email" class="form-label">Correo Electrónico</label>
-                <input type="email" class="form-control" id="email" placeholder="Introduce tu correo" required>
+                <input type="email" class="form-control" name="email" id="email" placeholder="<%=usuario.getEmail()%>" required>
             </div>
             <div class="mb-3">
                 <label for="password" class="form-label">Nueva Contraseña</label>
-                <input type="password" class="form-control" id="password" placeholder="Introduce una nueva contraseña">
+                <input type="password" class="form-control" name="password" id="password" placeholder="Introduce una nueva contraseña">
             </div>
             <div class="mb-3">
                 <label for="confirmPassword" class="form-label">Confirmar Nueva Contraseña</label>
-                <input type="password" class="form-control" id="confirmPassword" placeholder="Repite la nueva contraseña">
+                <input type="password" class="form-control" name="confirmPassword" id="confirmPassword" placeholder="Repite la nueva contraseña">
             </div>
-            <button type="submit" class="btn btn-primary w-100">Guardar Cambios</button>
-        </form>
-    </div>
 
-    <!-- Formulario de Preferencias de Viaje -->
-    <div class="container my-5">
-        <h2 class="text-center mb-4">Modificar Preferencias de Viaje</h2>
-        <form>
             <div class="mb-3">
                 <label for="preferencias" class="form-label">Preferencia de Viaje</label>
-                <select class="form-select" id="preferencias">
-                    <option selected>Selecciona una preferencia...</option>
+                <select class="form-select" name="preferencia" id="preferencias">
+                    <option selected>Selecciona una preferencia  <%=usuario.getPreferencias()%>...</option>
                     <option value="playa">Playa</option>
                     <option value="montaña">Montaña</option>
                     <option value="ciudad">Ciudad</option>
                     <option value="aventura">Aventura</option>
                 </select>
             </div>
-            <button type="submit" class="btn btn-primary w-100">Guardar Preferencias</button>
+            <button type="submit" class="btn btn-primary w-100">Guardar Cambios</button>
         </form>
     </div>
+
 
     <!-- Footer -->
     <footer class="bg-dark text-white text-center py-3">
