@@ -17,9 +17,6 @@
         response.sendRedirect("../../index.jsp");
     }else{
             Control control = new Control();
-    List<ImgDestino> imgDestinos=null;
-    List<Destinos> destinos = (List<Destinos>) session.getAttribute("destinos");
-    imgDestinos = control.getImgDestinos(destinos);
 
 
 %>
@@ -103,26 +100,7 @@
     <div class="container my-5">
         <h2 class="text-center mb-4">Destinos Populares</h2>
         <div class="row">
-            <%
-                int i = 0;
-                for (Destinos destino : destinos) {
-            %>
-            <div class="col-md-4">
-                <div class="card">
-                    <img src="<%=imgDestinos.get(i).getUrl()%>" class="card-img-top" alt="Playa">
-                    <div class="card-body">
-                        <h5 class="card-title"><%=destino.getNombre()%>, <%=destino.getPais()%></h5>
-                        <p class="card-text">Clima: <%=destino.getClima()%> | Popularidad: <%=destino.getPopularidad()%></p>
-                        <div class="d-grid gap-2">
-                            <button class="btn btn-outline-success">Agregar a Favoritos</button>
-                            <button class="btn btn-outline-info">Agregar Viajes por Hacer</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <%
-                    i++;
-                }%>
+
 
             <div class="col-md-4">
                 <div class="card">
