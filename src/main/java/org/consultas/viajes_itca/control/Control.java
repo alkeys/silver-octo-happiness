@@ -113,6 +113,10 @@ public class Control {
         return controlViajes.findViajesPorHacer(userId, destinoId);
     }
 
+    public List<ViajesPorHacer> getViajePorHacer() {
+        return controlViajes.findAll();
+    }
+
     public void agregarViajePorHacer(ViajesPorHacer viajesPorHacerVerificar) {
         controlViajes.create(viajesPorHacerVerificar);
     }
@@ -152,5 +156,25 @@ public class Control {
 
     public long obtenerCantidadIdusuarios() {
         return controlUsuario.findUsuariosCount();
+    }
+
+    public List<Usuarios> getUsuarios() {
+        return controlUsuario.findAll();
+    }
+
+    public int cantidadUsuarios() {
+        return (int) controlUsuario.findUsuariosCount();
+    }
+
+    public int getCantidadClima(String clima) {
+        return controlDestinos.findCantidadClima(clima);
+    }
+
+    public long getCantidadClimaviajes(String clima) {
+        return controlViajes.findCantidadClima(clima);
+    }
+
+    public long getCantidadTipoviajes(String tipo) {
+        return controlViajes.findCantidadTipo(tipo);
     }
 }

@@ -40,4 +40,14 @@ public class Controlviajes extends AbstractJpaController<ViajesPorHacer> {
         controlViajes = new ViajesPorHacerJpaController(emf);
         return (int) controlViajes.findCantidadIdusuariosDestino(destinoId);
     }
+
+    public long findCantidadClima(String clima) {
+        controlViajes = new ViajesPorHacerJpaController(emf);
+        return  controlViajes.findCantidadClima(clima);
+    }
+
+    public long findCantidadTipo(String tipo) {
+        controlViajes = new ViajesPorHacerJpaController(emf);
+        return controlViajes.findCantidadTipo(tipo);
+    }
 }

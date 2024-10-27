@@ -1,8 +1,13 @@
-<%-- 
+<%@ page import="java.util.List" %>
+<%@ page import="org.consultas.viajes_itca.entity.Usuarios" %><%--
     Document   : gestionUsuario
     Created on : 25 oct 2024, 22:10:22
     Author     : enocc
 --%>
+
+<%
+    List<Usuarios> usuarios = (List<Usuarios>) session.getAttribute("usuarios");
+%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -59,32 +64,27 @@
                     <th>Nombre</th>
                     <th>Correo Electrónico</th>
                     <th>Rol</th>
-                    <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Juan Pérez</td>
-                    <td>juan.perez@example.com</td>
-                    <td>Usuario</td>
+
+                <%
+                    for (Usuarios usuario : usuarios) {
+                %>
+                        <tr>
+                    <td><%=usuario.getUserId()%></td>
+                    <td><%=usuario.getNombre()%></td>
+                    <td><%=usuario.getEmail()%></td>
                     <td>
                         <a href="detalleUsuario.jsp" class="btn btn-info btn-sm">Ver Detalle</a>
                         <a href="vistaModificarUsuario.jsp" class="btn btn-warning btn-sm">Modificar</a>
                         <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#eliminarModal">Eliminar</button>
                     </td>
                 </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Ana Gómez</td>
-                    <td>ana.gomez@example.com</td>
-                    <td>Administrador</td>
-                    <td>
-                        <a href="detalleUsuario.jsp" class="btn btn-info btn-sm">Ver Detalle</a>
-                        <a href="vistaModificarUsuario.jsp" class="btn btn-warning btn-sm">Modificar</a>
-                        <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#eliminarModal">Eliminar</button>
-                    </td>
-                </tr>
+                <%
+                        }
+                %>
+
             </tbody>
         </table>
     </div>

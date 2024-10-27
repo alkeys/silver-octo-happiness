@@ -49,6 +49,16 @@ public void doGet(HttpServletRequest request, HttpServletResponse response) thro
                 request.getSession().setAttribute("destinos2", destinos2);
                 request.getSession().setAttribute("destinos", destinos);
               if (usuario.getNombre().equalsIgnoreCase("admin")&& usuario.getEmail().equalsIgnoreCase("admin@admin.com")) {
+                    List<Usuarios> usuarios = control.getUsuarios();
+                    List<Destinos> destinosAdmin = control.getDestinos();
+                    List<Destinos> destinosMasValorados = control.getDestinosMasValorados(2);
+                    List<ViajesPorHacer> viajes = control.getViajePorHacer();
+                    request.getSession().setAttribute("viajes", viajes);
+                    request.getSession().setAttribute("destinosMasValorados", destinosMasValorados);
+                    request.getSession().setAttribute("usuarios", usuarios);
+                    request.getSession().setAttribute("destinosAdmin", destinosAdmin);
+
+
                     response.sendRedirect("Pages/admin/panelAdmin.jsp");
                 } else {
                     response.sendRedirect("Pages/user/home.jsp");

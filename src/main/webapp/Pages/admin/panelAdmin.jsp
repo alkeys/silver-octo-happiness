@@ -1,4 +1,8 @@
-<%-- 
+<%@ page import="java.util.List" %>
+<%@ page import="org.consultas.viajes_itca.entity.Destinos" %>
+<%@ page import="org.consultas.viajes_itca.entity.Usuarios" %>
+<%@ page import="org.consultas.viajes_itca.entity.ViajesPorHacer" %>
+<%@ page import="org.consultas.viajes_itca.control.Control" %><%--
     Document   : panelAdmin
     Created on : 25 oct 2024, 21:35:02
     Author     : enocc
@@ -8,8 +12,13 @@
 <!DOCTYPE html>
 
 <%
-        
 
+
+    List<Usuarios> usuarios = (List<Usuarios>) session.getAttribute("usuarios");
+    List<Destinos> destinos = (List<Destinos>) session.getAttribute("destinosAdmin");
+    List<Destinos> destinos2 = (List<Destinos>) session.getAttribute("destinosMasValorados");
+    List<ViajesPorHacer> viajes = (List<ViajesPorHacer>) session.getAttribute("viajes");
+    Control control = new Control();
 
 
 %>
@@ -65,7 +74,7 @@
                 <div class="card bg-info text-white mb-4">
                     <div class="card-body">
                         <h3>Cantidad de Usuarios</h3>
-                        <p class="display-4">150</p>
+                        <p class="display-4"><%=usuarios.size()%></p>
                     </div>
                 </div>
             </div>
@@ -73,7 +82,7 @@
                 <div class="card bg-warning text-white mb-4">
                     <div class="card-body">
                         <h3>Destinos Disponibles</h3>
-                        <p class="display-4">45</p>
+                        <p class="display-4"><%=destinos.size()%></p>
                     </div>
                 </div>
             </div>
@@ -81,7 +90,7 @@
                 <div class="card bg-success text-white mb-4">
                     <div class="card-body">
                         <h3>Destinos Populares</h3>
-                        <p class="display-4">Cancún, París</p>
+                        <p class="display-4"><%=destinos2.get(0).getNombre()%>, <%=destinos2.get(1).getNombre()%></p>
                     </div>
                 </div>
             </div>
@@ -109,6 +118,19 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+
+    <%
+        long playa = control.getCantidadTipoviajes("playa");
+        long montana = control.getCantidadTipoviajes("montaña");
+        long ciudad = control.getCantidadTipoviajes("ciudad");
+        long aventura = control.getCantidadTipoviajes("aventura");
+        long calido = control.getCantidadClimaviajes("cálido");
+        long templado = control.getCantidadClimaviajes("templado");
+        long frio = control.getCantidadClimaviajes("frío");
+
+
+    %>
+
     <script>
         // Gráfico de tipos de viaje
         const ctx1 = document.getElementById('graficoTiposViaje').getContext('2d');
@@ -118,7 +140,7 @@
                 labels: ['Playa', 'Montaña', 'Ciudad', 'Aventura'],
                 datasets: [{
                     label: 'Usuarios por Tipo de Viaje',
-                    data: [50, 30, 40, 20],
+                    data: [<%=playa%>,<%=montana%>,<%=ciudad%>, <%=aventura%>],
                     backgroundColor: ['#3498db', '#2ecc71', '#e74c3c', '#9b59b6']
                 }]
             }
@@ -129,9 +151,9 @@
         new Chart(ctx2, {
             type: 'pie',
             data: {
-                labels: ['Tropical', 'Templado', 'Frío'],
+                labels: ['Cálido', 'Templado', 'Frío'],
                 datasets: [{
-                    data: [60, 25, 15],
+                    data: [<%=calido%>,<%=templado%>, <%=frio%>],
                     backgroundColor: ['#f1c40f', '#3498db', '#95a5a6']
                 }]
             }

@@ -202,15 +202,38 @@ public class ViajesPorHacerJpaController implements Serializable {
      * @param destinoId
      * @return
      */
-    public long findCantidadIdusuariosDestino(Destinos destino) {
+
+    public long findCantidadIdusuariosDestino(Destinos destinoId) {
         EntityManager em = getEntityManager();
         try {
-            Query q = em.createQuery("SELECT COUNT(v) FROM ViajesPorHacer v WHERE v.destinoId = :destino");
-            q.setParameter("destino", destino);
+            Query q = em.createQuery("SELECT COUNT(v) FROM ViajesPorHacer v WHERE v.destinoId.destinoId = :destinoId");
+            q.setParameter("destinoId", destinoId.getDestinoId());
+            System.out.printf("Cantidad de usuarios que tienen el destino en sus viajes por hacer: %s\n", q.getSingleResult());
             return (long) q.getSingleResult();
         } finally {
             em.close();
         }
+    }
 
+    public long findCantidadClima(String clima) {
+        EntityManager em = getEntityManager();
+        try {
+            Query q = em.createQuery("SELECT COUNT(distinct v.userId) FROM ViajesPorHacer v WHERE v.destinoId.clima = :clima");
+            q.setParameter("clima", clima);
+            return (long) q.getSingleResult();
+        } finally {
+            em.close();
+        }
+    }
+
+    public long findCantidadTipo(String tipo) {
+        EntityManager em = getEntityManager();
+        try {
+            Query q = em.createQuery("SELECT COUNT(distinct v.userId) FROM ViajesPorHacer v WHERE v.destinoId.tipoDestino = :tipo");
+            q.setParameter("tipo", tipo);
+            return (long) q.getSingleResult();
+        } finally {
+            em.close();
+        }
     }
 }

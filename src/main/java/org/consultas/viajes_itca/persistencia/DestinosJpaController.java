@@ -171,4 +171,15 @@ public class DestinosJpaController implements Serializable {
             em.close();
         }
     }
+
+    public int findCantidadClima(String clima) {
+        EntityManager em = getEntityManager();
+        try {
+            Query query = em.createQuery("SELECT COUNT(distinct d) FROM Destinos d WHERE d.clima = :clima");
+            query.setParameter("clima", clima);
+            return ((Long) query.getSingleResult()).intValue();
+        } finally {
+            em.close();
+        }
+    }
 }
