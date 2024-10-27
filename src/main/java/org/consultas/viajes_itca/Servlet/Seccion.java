@@ -14,7 +14,9 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.consultas.viajes_itca.control.Control;
 import org.consultas.viajes_itca.entity.Destinos;
+import org.consultas.viajes_itca.entity.Favoritos;
 import org.consultas.viajes_itca.entity.Usuarios;
+import org.consultas.viajes_itca.entity.ViajesPorHacer;
 
 /**
  *
@@ -43,6 +45,12 @@ public void doGet(HttpServletRequest request, HttpServletResponse response) thro
             if (usuario != null) {
                 request.getSession().setAttribute("usuario", usuario);
                 List<Destinos> destinos = control.getDestinosMasValorados(3);
+                List<Destinos> destinos2 = control.getDestinos(50,0);
+                List<Favoritos> favoritos = control.obtenerFavoritosList(usuario);
+                List<ViajesPorHacer> viajes = control.obtenerViajesPorHacerList(usuario);
+                request.getSession().setAttribute("viajes", viajes);
+                request.getSession().setAttribute("favoritos", favoritos);
+                request.getSession().setAttribute("destinos2", destinos2);
                 request.getSession().setAttribute("destinos", destinos);
               if (usuario.getNombre().equalsIgnoreCase("admin")&& usuario.getEmail().equalsIgnoreCase("admin@admin.com")) {
                     response.sendRedirect("Pages/admin/panelAdmin.jsp");

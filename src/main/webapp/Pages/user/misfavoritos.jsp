@@ -1,4 +1,6 @@
-<%-- 
+<%@ page import="java.util.List" %>
+<%@ page import="org.consultas.viajes_itca.entity.Favoritos" %>
+<%--
     Document   : misfavoritos
     Created on : 26 oct 2024, 23:48:21
     Author     : enocc
@@ -78,47 +80,34 @@
     <h1>Mis Favoritos</h1>
 </div>
 
+<%
+    // Código Java para obtener los destinos favoritos del usuario
+    List<Favoritos> favoritos = (List<Favoritos>) session.getAttribute("favoritos");
+%>
+
+
 <!-- Sección de Favoritos -->
 <div class="container my-5">
     <h2 class="text-center mb-4">Tus Destinos Guardados</h2>
     <div class="row g-4">
         <!-- Card 1 -->
+        <%
+            for (Favoritos favorito : favoritos) {
+        %>
         <div class="col-md-4 position-relative">
             <div class="card">
-                <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Bora Bora">
+                <img src="<%=favorito.getDestinoId().getUrl()%>" class="card-img-top" alt="Bora Bora">
                 <div class="card-body">
-                    <h5 class="card-title">Bora Bora, Polinesia Francesa</h5>
-                    <p class="card-text">Clima: Tropical | Popularidad: Alta</p>
+                    <h5 class="card-title"><%=favorito.getDestinoId().getNombre()%>, <%=favorito.getDestinoId().getPais()%></h5>
+                    <p class="card-text">Clima: <%=favorito.getDestinoId().getClima()%> | Popularidad: <%=favorito.getDestinoId().getPopularidad()%></p>
                 </div>
-                <button class="btn btn-danger btn-sm btn-remove">Eliminar</button>
-            </div>
-        </div>
+                <a href="../../EliminarFav?id=<%=favorito.getFavoritoId()%>" class="btn btn-danger btn-sm btn-remove">Eliminar</a>
 
-        <!-- Card 2 -->
-        <div class="col-md-4 position-relative">
-            <div class="card">
-                <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Nueva York">
-                <div class="card-body">
-                    <h5 class="card-title">Nueva York, EE.UU</h5>
-                    <p class="card-text">Clima: Variable | Popularidad: Muy Alta</p>
-                </div>
-                <button class="btn btn-danger btn-sm btn-remove">Eliminar</button>
             </div>
         </div>
-
-        <!-- Card 3 -->
-        <div class="col-md-4 position-relative">
-            <div class="card">
-                <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Safari">
-                <div class="card-body">
-                    <h5 class="card-title">Safari en Kenia</h5>
-                    <p class="card-text">Clima: Seco | Popularidad: Media</p>
-                </div>
-                <button class="btn btn-danger btn-sm btn-remove">Eliminar</button>
-            </div>
-        </div>
-    </div>
-</div>
+        <%
+            }
+        %>
 
 <!-- Footer -->
 <footer class="bg-dark text-white text-center py-3 mt-5">

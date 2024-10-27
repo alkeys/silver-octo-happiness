@@ -1,7 +1,8 @@
 <%@ page import="org.consultas.viajes_itca.entity.Usuarios" %>
 <%@ page import="java.util.List" %>
 <%@ page import="org.consultas.viajes_itca.entity.Destinos" %>
-<%@ page import="org.consultas.viajes_itca.control.Control" %><%--
+<%@ page import="org.consultas.viajes_itca.control.Control" %>
+<%@ page import="org.consultas.viajes_itca.entity.Favoritos" %><%--
     Document   : home
     Created on : 24 oct 2024, 20:01:34
     Author     : enocc
@@ -17,6 +18,8 @@
     } else {
         Control control = new Control();
         List<Destinos> destinos = (List<Destinos>) session.getAttribute("destinos");
+        List<Destinos> destinos2Filto = (List<Destinos>) session.getAttribute("destinos2");
+
 
 %>
 
@@ -66,37 +69,6 @@
     <a href="explorar.html" class="btn btn-primary btn-lg">Explorar Ahora</a>
 </div>
 
-<!-- Barra de Búsqueda y Filtros -->
-<div class="container my-5">
-    <form class="row g-3">
-        <div class="col-md-4">
-            <label for="tipoDestino" class="form-label">Tipo de Destino</label>
-            <select class="form-select" id="tipoDestino" name="tipoDestino">
-                <option selected>Selecciona un tipo...</option>
-                <option value="playa">Playa</option>
-                <option value="montaña">Montaña</option>
-                <option value="ciudad">Ciudad</option>
-                <option value="aventura">Aventura</option>
-            </select>
-        </div>
-        <div class="col-md-4">
-            <label for="pais" class="form-label">País</label>
-            <input type="text" class="form-control" id="pais" placeholder="Introduce un país" name="pais">
-        </div>
-        <div class="col-md-4">
-            <label for="clima" class="form-label">Clima</label>
-            <select class="form-select" id="clima" name="clima">
-                <option selected>Selecciona el clima...</option>
-                <option value="tropical">Tropical</option>
-                <option value="templado">Templado</option>
-                <option value="frío">Frío</option>
-            </select>
-        </div>
-        <div class="col-12 d-flex justify-content-center mt-3">
-            <button type="submit" class="btn btn-primary">Buscar Destinos</button>
-        </div>
-    </form>
-</div>
 
 <!-- Lista de Destinos -->
 <div class="container my-5">
@@ -111,19 +83,76 @@
             <div class="card">
                 <img src="<%=destino.getUrl()%>" class="card-img-top" alt="Montaña">
                 <div class="card-body">
-                    <h5 class="card-title"><%=destino.getNombre()%>,<%=destino.getPais()%></h5>
-                    <p class="card-text">Clima: <%=destino.getClima()%> | Popularidad: <%=destino.getPopularidad()%></p>
+                    <h5 class="card-title"><%=destino.getNombre()%>,<%=destino.getPais()%>
+                    </h5>
+                    <p class="card-text">Clima: <%=destino.getClima()%> | Popularidad: <%=destino.getPopularidad()%>
+                    </p>
                     <div class="d-grid gap-2">
-                        <button class="btn btn-outline-success">Agregar a Favoritos</button>
-                        <button class="btn btn-outline-info">Agregar Viajes por Hacer</button>
+                        <a href="../../AgregarFav?destinoId=<%=destino.getDestinoId()%>" class="btn btn-outline-success">Agregar a Favoritos </a>
+                        <a href="../../AgregarVi?destinoId=<%=destino.getDestinoId()%>" class="btn btn-outline-info">Agregar Viajes por Hacer</a>
                     </div>
                 </div>
             </div>
         </div>
 
             <%
-                    }
-%>
+                    }%>
+
+        <!-- Barra de Búsqueda y Filtros -->
+        <div class="container my-5">
+            <form class="row g-3">
+                <div class="col-md-4">
+                    <label for="tipoDestino" class="form-label">Tipo de Destino</label>
+                    <select class="form-select" id="tipoDestino" name="tipoDestino">
+                        <option selected>Selecciona un tipo...</option>
+                        <option value="playa">Playa</option>
+                        <option value="montaña">Montaña</option>
+                        <option value="ciudad">Ciudad</option>
+                        <option value="aventura">Aventura</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label for="pais" class="form-label">País</label>
+                    <input type="text" class="form-control" id="pais" placeholder="Introduce un país" name="pais">
+                </div>
+                <div class="col-md-4">
+                    <label for="clima" class="form-label">Clima</label>
+                    <select class="form-select" id="clima" name="clima">
+                        <option selected>Selecciona el clima...</option>
+                        <option value="tropical">Tropical</option>
+                        <option value="templado">Templado</option>
+                        <option value="frío">Frío</option>
+                    </select>
+                </div>
+                <div class="col-12 d-flex justify-content-center mt-3">
+                    <button type="submit" class="btn btn-primary">Buscar Destinos</button>
+                </div>
+            </form>
+        </div>
+
+
+            <%
+                for (Destinos destino : destinos2Filto) {
+            %>
+        <div class="col-md-4">
+            <div class="card">
+                <img src="<%=destino.getUrl()%>" class="card-img-top" alt="Montaña">
+                <div class="card-body">
+                    <h5 class="card-title"><%=destino.getNombre()%>,<%=destino.getPais()%>
+                    </h5>
+                    <p class="card-text">Clima: <%=destino.getClima()%> | Popularidad: <%=destino.getPopularidad()%>
+                    </p>
+                    <div class="d-grid gap-2">
+                        <a href="../../AgregarFav?destinoId=<%=destino.getDestinoId()%>" class="btn btn-outline-success">Agregar a Favoritos </a>
+                        <a href="../../AgregarVi?destinoId=<%=destino.getDestinoId()%>" class="btn btn-outline-info">Agregar Viajes por Hacer</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+            <%
+                    }%>
+
 
         <!-- Footer -->
         <footer class="bg-dark text-white text-center py-3">

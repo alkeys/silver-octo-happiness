@@ -151,6 +151,22 @@ public class ViajesPorHacerJpaController implements Serializable {
         }
     }
 
+    public ViajesPorHacer findViajesPorHacer(Integer userId, Integer destinoId) {
+        EntityManager em = getEntityManager();
+        try {
+            Query q = em.createQuery("SELECT v FROM ViajesPorHacer v WHERE v.userId.userId = :userId AND v.destinoId.destinoId = :destinoId");
+            q.setParameter("userId", userId);
+            q.setParameter("destinoId", destinoId);
+          try {
+            return (ViajesPorHacer) q.getSingleResult();
+          }catch (Exception e){
+              return null;
+          }
+        } finally {
+            em.close();
+        }
+    }
+
     public int getViajesPorHacerCount() {
         EntityManager em = getEntityManager();
         try {
@@ -163,5 +179,19 @@ public class ViajesPorHacerJpaController implements Serializable {
             em.close();
         }
     }
-    
+
+    public List<ViajesPorHacer> findViajesPorHacerList(Usuarios usuario) {
+        EntityManager em = getEntityManager();
+        try {
+            Query q = em.createQuery("SELECT v FROM ViajesPorHacer v WHERE v.userId.userId = :userId");
+            q.setParameter("userId", usuario.getUserId());
+            try {
+                return q.getResultList();
+            } catch (Exception e) {
+                return null;
+            }
+        } finally {
+            em.close();
+        }
+    }
 }

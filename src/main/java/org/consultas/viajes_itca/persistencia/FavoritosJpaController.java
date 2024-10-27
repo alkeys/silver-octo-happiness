@@ -151,6 +151,21 @@ public class FavoritosJpaController implements Serializable {
         }
     }
 
+/*    por consulta jpql si no hay que devualba un nll*/
+    public Favoritos findFavoritos(Usuarios usuario) {
+        EntityManager em = getEntityManager();
+        try {
+            return (Favoritos) em.createQuery("SELECT f FROM Favoritos f WHERE f.userId = :userId")
+                    .setParameter("userId", usuario)
+                    .getSingleResult();
+        } catch (Exception e) {
+            return null;
+        } finally {
+            em.close();
+        }
+    }
+
+
     public int getFavoritosCount() {
         EntityManager em = getEntityManager();
         try {
@@ -163,5 +178,36 @@ public class FavoritosJpaController implements Serializable {
             em.close();
         }
     }
-    
+
+    public Favoritos getFavorito(int userid, int destinoId) {
+        EntityManager em = getEntityManager();
+        try {
+            return (Favoritos) em.createQuery("SELECT f FROM Favoritos f WHERE f.userId.userId = :userId AND f.destinoId.destinoId = :destinoId")
+                    .setParameter("userId", userid)
+                    .setParameter("destinoId", destinoId)
+                    .getSingleResult();
+        } catch (Exception e) {
+            return null;
+        } finally {
+            em.close();
+        }
+    }
+
+    /***
+     * retorna los favoritos de un usuario si no hay un null
+     * @param usuario
+     * @return
+     */
+    public List<Favoritos> findFavoritosList(Usuarios usuario) {
+        EntityManager em = getEntityManager();
+        try {
+            return em.createQuery("SELECT f FROM Favoritos f WHERE f.userId = :userId")
+                    .setParameter("userId", usuario)
+                    .getResultList();
+        } catch (Exception e) {
+            return null;
+        } finally {
+            em.close();
+        }
+    }
 }

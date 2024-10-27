@@ -13,6 +13,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import java.util.List;
 import org.consultas.viajes_itca.entity.Destinos;
+import org.consultas.viajes_itca.entity.Favoritos;
 import org.consultas.viajes_itca.persistencia.exceptions.NonexistentEntityException;
 
 /**
@@ -151,6 +152,21 @@ public class DestinosJpaController implements Serializable {
             Query query = em.createQuery("SELECT d FROM Destinos d ORDER BY d.popularidad DESC");
             query.setMaxResults(i);
             return query.getResultList();
+        } finally {
+            em.close();
+        }
+    }
+
+    public List<Destinos> findDestinosListFavoritos(List<Favoritos> favoritos) {
+        EntityManager em = getEntityManager();
+        try {
+            Query query = em.createQuery("SELECT d FROM Destinos d WHERE d.destinoId IN :favoritos");
+            query.setParameter("favoritos", favoritos);
+           try {
+                return query.getResultList();
+              } catch (Exception e) {
+                return null;
+           }
         } finally {
             em.close();
         }

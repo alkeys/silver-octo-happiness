@@ -4,54 +4,62 @@ import javax.persistence.Persistence;
 import javax.persistence.EntityManagerFactory;
 
 import org.consultas.viajes_itca.entity.Destinos;
+import org.consultas.viajes_itca.entity.Favoritos;
 import org.consultas.viajes_itca.entity.Usuarios;
+import org.consultas.viajes_itca.entity.ViajesPorHacer;
 import org.consultas.viajes_itca.persistencia.ControlDestinos;
+import org.consultas.viajes_itca.persistencia.ControlFav;
 import org.consultas.viajes_itca.persistencia.ControlUsuario;
+import org.consultas.viajes_itca.persistencia.Controlviajes;
 
 import java.util.List;
 
-public  class Control {
+public class Control {
     private final EntityManagerFactory emf;
-    private ControlUsuario controlUsuario=null;
-     private ControlDestinos controlDestinos=null;
+    private ControlUsuario controlUsuario = null;
+    private ControlDestinos controlDestinos = null;
+    private ControlFav controlFavorite = null;
+    private Controlviajes controlViajes = null;
 
     public Control() {
         String unidadPersistencia = "jpaEnoc";
-       emf=Persistence.createEntityManagerFactory(unidadPersistencia);
-       controlUsuario =new ControlUsuario(emf, Usuarios.class);
-         controlDestinos =new ControlDestinos(emf, Destinos.class);
+        emf = Persistence.createEntityManagerFactory(unidadPersistencia);
+        controlUsuario = new ControlUsuario(emf, Usuarios.class);
+        controlDestinos = new ControlDestinos(emf, Destinos.class);
+        controlFavorite = new ControlFav(emf, Favoritos.class);
+        controlViajes=new Controlviajes(emf, ViajesPorHacer.class);
     }
 
 
-    public boolean ValidarUsuario(String email, String pass){
+    public boolean ValidarUsuario(String email, String pass) {
         Usuarios usuario = new Usuarios();
-        usuario=controlUsuario.findUsuariosEmailPass(email, pass);
-        if(usuario!=null){
+        usuario = controlUsuario.findUsuariosEmailPass(email, pass);
+        if (usuario != null) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
 
-    public Usuarios getIdUsuario(Object id){
+    public Usuarios getIdUsuario(Object id) {
         Usuarios usuario = new Usuarios();
-        usuario=controlUsuario.find(id);
+        usuario = controlUsuario.find(id);
         return usuario;
     }
 
-    public Usuarios getUsuarioEmail(String email){
+    public Usuarios getUsuarioEmail(String email) {
         Usuarios usuario = new Usuarios();
-        usuario=controlUsuario.findUsuariosEmail(email);
+        usuario = controlUsuario.findUsuariosEmail(email);
         return usuario;
     }
-    
-    public Usuarios getUsuariosEmailPass(String email,String pass){
+
+    public Usuarios getUsuariosEmailPass(String email, String pass) {
         return controlUsuario.findUsuariosEmailPass(email, pass);
     }
 
 
     public Destinos getDestino(int i) {
-       return controlDestinos.find(i);
+        return controlDestinos.find(i);
     }
 
     public List<Destinos> getDestinos() {
@@ -82,5 +90,50 @@ public  class Control {
 
     public void crearDestino(Destinos destino) {
         controlDestinos.create(destino);
+    }
+
+    public void agregarFavorito(Favoritos favoritos) {
+        controlFavorite.create(favoritos);
+
+    }
+
+
+    public Favoritos getFavorite(int id) {
+        return controlFavorite.find(id);
+    }
+    public Favoritos getFavorite(Usuarios usuario) {
+        return controlFavorite.findFavoritos(usuario);
+    }
+
+    public Favoritos getFavorito(int userid, int iddestino) {
+        return controlFavorite.findFavoritos(userid, iddestino);
+    }
+
+    public ViajesPorHacer getViajePorHacer(Integer userId, Integer destinoId) {
+        return controlViajes.findViajesPorHacer(userId, destinoId);
+    }
+
+    public void agregarViajePorHacer(ViajesPorHacer viajesPorHacerVerificar) {
+        controlViajes.create(viajesPorHacerVerificar);
+    }
+
+    public List<Favoritos> obtenerFavoritosList(Usuarios user) {
+        return controlFavorite.findFavoritosList(user);
+    }
+
+    public List<Destinos> obtenerDestinosListFavoritos(List<Favoritos> favoritos) {
+        return controlDestinos.findDestinosListFavoritos(favoritos);
+    }
+
+    public List<ViajesPorHacer> obtenerViajesPorHacerList(Usuarios usuario) {
+        return controlViajes.findViajesPorHacerList(usuario);
+    }
+
+    public void EliminarFav(int id) {
+        controlFavorite.destroy(id);
+    }
+
+    public void ElimanarViaje(int id) {
+        controlViajes.destroy(id);
     }
 }
