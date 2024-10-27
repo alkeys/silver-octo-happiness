@@ -69,7 +69,7 @@
         <form class="row g-3">
             <div class="col-md-4">
                 <label for="tipoDestino" class="form-label">Tipo de Destino</label>
-                <select class="form-select" id="tipoDestino">
+                <select class="form-select" id="tipoDestino" name="tipoDestino">
                     <option selected>Selecciona un tipo...</option>
                     <option value="playa">Playa</option>
                     <option value="montaña">Montaña</option>
@@ -79,11 +79,11 @@
             </div>
             <div class="col-md-4">
                 <label for="pais" class="form-label">País</label>
-                <input type="text" class="form-control" id="pais" placeholder="Introduce un país">
+                <input type="text" class="form-control" id="pais" placeholder="Introduce un país" name="pais">
             </div>
             <div class="col-md-4">
                 <label for="clima" class="form-label">Clima</label>
-                <select class="form-select" id="clima">
+                <select class="form-select" id="clima" name="clima">
                     <option selected>Selecciona el clima...</option>
                     <option value="tropical">Tropical</option>
                     <option value="templado">Templado</option>

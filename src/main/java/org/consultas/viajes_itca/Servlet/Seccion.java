@@ -52,9 +52,7 @@ public void doGet(HttpServletRequest request, HttpServletResponse response) thro
             }
 
         } else {
-            out.println("<html><body>");
-            out.println("<h1>Usuario Invalido</h1>");
-            out.println("</body></html>");
+          response.sendRedirect("Pages/usuarioinvalido.jsp");
         }
 
 
