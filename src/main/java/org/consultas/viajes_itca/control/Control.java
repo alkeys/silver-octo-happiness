@@ -79,4 +79,8 @@ public  class Control {
     public void updateUsuario(Usuarios user) throws Exception {
         controlUsuario.edit(user);
     }
+
+    public void crearDestino(Destinos destino) {
+        controlDestinos.create(destino);
+    }
 }

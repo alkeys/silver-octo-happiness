@@ -1,4 +1,6 @@
-<%-- 
+<%@ page import="java.util.List" %>
+<%@ page import="org.consultas.viajes_itca.entity.Destinos" %>
+<%@ page import="org.consultas.viajes_itca.control.Control" %><%--
     Document   : gestionDestinos
     Created on : 25 oct 2024, 21:57:11
     Author     : enocc
@@ -53,7 +55,7 @@
     <!-- Formulario para añadir nuevos destinos -->
     <div class="container my-5">
         <h2 class="text-center mb-4">Añadir Nuevo Destino</h2>
-        <form id="formDestino" class="mb-5">
+        <form method="post" action="../../CrearDestino"  id="formDestino" class="mb-5">
             <div class="row">
          <div class="col-md-4">
             <label for="tipoDestino" class="form-label">Tipo de Destino</label>
@@ -67,7 +69,7 @@
         </div>
                 <div class="col-md-4">
                     <label for="tipoDestino" class="form-label">Nombre del Destino</label>
-                    <input type="text" class="form-control" id="tipoDestino" required>
+                    <input type="text" class="form-control" id="nombreD" name="nombreD" required>
                 </div>
                 <div class="col-md-4">
                  <div class="col-md-4 mb-3">
@@ -88,7 +90,7 @@
             <div class="row mb-3">
                 <div class="col-md-4">
                     <label for="urlImagen" class="form-label">URL de la Imagen</label>
-                    <input type="url" class="form-control" id="urlImagen" placeholder="https://ejemplo.com/imagen.jpg" required>
+                    <input type="url" class="form-control" id="urlImagen" name="urlImagen" placeholder="https://ejemplo.com/imagen.jpg" required>
                 </div>
             </div>
             <button type="submit" class="btn btn-primary">Añadir Destino</button>
@@ -101,6 +103,7 @@
         <table class="table table-striped">
             <thead>
                 <tr>
+                    <th>ID</th>
                     <th>Nombre</th>
                     <th>Tipo</th>
                     <th>Clima</th>
@@ -108,27 +111,31 @@
                     <th>Acciones</th>
                 </tr>
             </thead>
+
+
+
+
             <tbody id="destinosList">
+            <%
+                Control control = new Control();
+                List<Destinos> destinos= control.getDestinos();
+                for(Destinos destino: destinos){
+            %>
                 <tr>
-                    <td>Cancún</td>
-                    <td>Playa</td>
-                    <td>Tropical</td>
-                    <td><img src="ruta/a/la/imagen.jpg" alt="Cancún" style="width: 100px;" /></td>
+                    <td><%=destino.getDestinoId()%></td>
+                    <td><%=destino.getPais()%></td>
+                    <td><%=destino.getTipoDestino()%></td>
+                    <td><%=destino.getClima()%></td>
+                    <td><img src="<%=destino.getUrl()%>" alt="Cancún" style="width: 100px;" /></td>
                     <td>
                         <a href="editarDestinoTuristico.jsp" class="btn btn-warning btn-sm">Editar</a>
                         <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal">Eliminar</button>
                     </td>
                 </tr>
-                <tr>
-                    <td>París</td>
-                    <td>Ciudad</td>
-                    <td>Templado</td>
-                    <td><img src="ruta/a/la/imagen.jpg" alt="París" style="width: 100px;" /></td>
-                    <td>
-                        <a href="editarDestinoTuristico.jsp" class="btn btn-warning btn-sm">Editar</a>
-                        <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal">Eliminar</button>
-                    </td>
-                </tr>
+            <%
+                }
+            %>
+
             </tbody>
         </table>
     </div>
