@@ -13,7 +13,6 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import java.util.List;
 import org.consultas.viajes_itca.entity.Usuarios;
-import org.consultas.viajes_itca.entity.Destinos;
 import org.consultas.viajes_itca.entity.ViajesPorHacer;
 import org.consultas.viajes_itca.persistencia.exceptions.NonexistentEntityException;
 
@@ -42,19 +41,10 @@ public class ViajesPorHacerJpaController implements Serializable {
                 userId = em.getReference(userId.getClass(), userId.getUserId());
                 viajesPorHacer.setUserId(userId);
             }
-            Destinos destinoId = viajesPorHacer.getDestinoId();
-            if (destinoId != null) {
-                destinoId = em.getReference(destinoId.getClass(), destinoId.getDestinoId());
-                viajesPorHacer.setDestinoId(destinoId);
-            }
             em.persist(viajesPorHacer);
             if (userId != null) {
                 userId.getViajesPorHacerCollection().add(viajesPorHacer);
                 userId = em.merge(userId);
-            }
-            if (destinoId != null) {
-                destinoId.getViajesPorHacerCollection().add(viajesPorHacer);
-                destinoId = em.merge(destinoId);
             }
             em.getTransaction().commit();
         } finally {
@@ -72,15 +62,9 @@ public class ViajesPorHacerJpaController implements Serializable {
             ViajesPorHacer persistentViajesPorHacer = em.find(ViajesPorHacer.class, viajesPorHacer.getViajeId());
             Usuarios userIdOld = persistentViajesPorHacer.getUserId();
             Usuarios userIdNew = viajesPorHacer.getUserId();
-            Destinos destinoIdOld = persistentViajesPorHacer.getDestinoId();
-            Destinos destinoIdNew = viajesPorHacer.getDestinoId();
             if (userIdNew != null) {
                 userIdNew = em.getReference(userIdNew.getClass(), userIdNew.getUserId());
                 viajesPorHacer.setUserId(userIdNew);
-            }
-            if (destinoIdNew != null) {
-                destinoIdNew = em.getReference(destinoIdNew.getClass(), destinoIdNew.getDestinoId());
-                viajesPorHacer.setDestinoId(destinoIdNew);
             }
             viajesPorHacer = em.merge(viajesPorHacer);
             if (userIdOld != null && !userIdOld.equals(userIdNew)) {
@@ -90,14 +74,6 @@ public class ViajesPorHacerJpaController implements Serializable {
             if (userIdNew != null && !userIdNew.equals(userIdOld)) {
                 userIdNew.getViajesPorHacerCollection().add(viajesPorHacer);
                 userIdNew = em.merge(userIdNew);
-            }
-            if (destinoIdOld != null && !destinoIdOld.equals(destinoIdNew)) {
-                destinoIdOld.getViajesPorHacerCollection().remove(viajesPorHacer);
-                destinoIdOld = em.merge(destinoIdOld);
-            }
-            if (destinoIdNew != null && !destinoIdNew.equals(destinoIdOld)) {
-                destinoIdNew.getViajesPorHacerCollection().add(viajesPorHacer);
-                destinoIdNew = em.merge(destinoIdNew);
             }
             em.getTransaction().commit();
         } catch (Exception ex) {
@@ -132,11 +108,6 @@ public class ViajesPorHacerJpaController implements Serializable {
             if (userId != null) {
                 userId.getViajesPorHacerCollection().remove(viajesPorHacer);
                 userId = em.merge(userId);
-            }
-            Destinos destinoId = viajesPorHacer.getDestinoId();
-            if (destinoId != null) {
-                destinoId.getViajesPorHacerCollection().remove(viajesPorHacer);
-                destinoId = em.merge(destinoId);
             }
             em.remove(viajesPorHacer);
             em.getTransaction().commit();

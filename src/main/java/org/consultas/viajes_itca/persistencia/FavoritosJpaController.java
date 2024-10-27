@@ -12,9 +12,8 @@ import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import java.util.List;
-import org.consultas.viajes_itca.entity.Usuarios;
-import org.consultas.viajes_itca.entity.Destinos;
 import org.consultas.viajes_itca.entity.Favoritos;
+import org.consultas.viajes_itca.entity.Usuarios;
 import org.consultas.viajes_itca.persistencia.exceptions.NonexistentEntityException;
 
 /**
@@ -42,19 +41,10 @@ public class FavoritosJpaController implements Serializable {
                 userId = em.getReference(userId.getClass(), userId.getUserId());
                 favoritos.setUserId(userId);
             }
-            Destinos destinoId = favoritos.getDestinoId();
-            if (destinoId != null) {
-                destinoId = em.getReference(destinoId.getClass(), destinoId.getDestinoId());
-                favoritos.setDestinoId(destinoId);
-            }
             em.persist(favoritos);
             if (userId != null) {
                 userId.getFavoritosCollection().add(favoritos);
                 userId = em.merge(userId);
-            }
-            if (destinoId != null) {
-                destinoId.getFavoritosCollection().add(favoritos);
-                destinoId = em.merge(destinoId);
             }
             em.getTransaction().commit();
         } finally {
@@ -72,15 +62,9 @@ public class FavoritosJpaController implements Serializable {
             Favoritos persistentFavoritos = em.find(Favoritos.class, favoritos.getFavoritoId());
             Usuarios userIdOld = persistentFavoritos.getUserId();
             Usuarios userIdNew = favoritos.getUserId();
-            Destinos destinoIdOld = persistentFavoritos.getDestinoId();
-            Destinos destinoIdNew = favoritos.getDestinoId();
             if (userIdNew != null) {
                 userIdNew = em.getReference(userIdNew.getClass(), userIdNew.getUserId());
                 favoritos.setUserId(userIdNew);
-            }
-            if (destinoIdNew != null) {
-                destinoIdNew = em.getReference(destinoIdNew.getClass(), destinoIdNew.getDestinoId());
-                favoritos.setDestinoId(destinoIdNew);
             }
             favoritos = em.merge(favoritos);
             if (userIdOld != null && !userIdOld.equals(userIdNew)) {
@@ -90,14 +74,6 @@ public class FavoritosJpaController implements Serializable {
             if (userIdNew != null && !userIdNew.equals(userIdOld)) {
                 userIdNew.getFavoritosCollection().add(favoritos);
                 userIdNew = em.merge(userIdNew);
-            }
-            if (destinoIdOld != null && !destinoIdOld.equals(destinoIdNew)) {
-                destinoIdOld.getFavoritosCollection().remove(favoritos);
-                destinoIdOld = em.merge(destinoIdOld);
-            }
-            if (destinoIdNew != null && !destinoIdNew.equals(destinoIdOld)) {
-                destinoIdNew.getFavoritosCollection().add(favoritos);
-                destinoIdNew = em.merge(destinoIdNew);
             }
             em.getTransaction().commit();
         } catch (Exception ex) {
@@ -132,11 +108,6 @@ public class FavoritosJpaController implements Serializable {
             if (userId != null) {
                 userId.getFavoritosCollection().remove(favoritos);
                 userId = em.merge(userId);
-            }
-            Destinos destinoId = favoritos.getDestinoId();
-            if (destinoId != null) {
-                destinoId.getFavoritosCollection().remove(favoritos);
-                destinoId = em.merge(destinoId);
             }
             em.remove(favoritos);
             em.getTransaction().commit();

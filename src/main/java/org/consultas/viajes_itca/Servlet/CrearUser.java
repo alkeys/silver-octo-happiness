@@ -4,12 +4,9 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.consultas.viajes_itca.control.Control;
-import org.consultas.viajes_itca.entity.Destinos;
 import org.consultas.viajes_itca.entity.Usuarios;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.List;
 
 @WebServlet(name = "CrearUser", urlPatterns = {"/CrearUser"})
 public class CrearUser extends HelloServlet{

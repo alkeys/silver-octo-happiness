@@ -1,17 +1,17 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package org.consultas.viajes_itca.persistencia;
 
-import javax.persistence.*;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import java.io.Serializable;
+import javax.persistence.Query;
+import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import org.consultas.viajes_itca.entity.ViajesPorHacer;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import javax.persistence.NoResultException;
 import org.consultas.viajes_itca.entity.Favoritos;
 import org.consultas.viajes_itca.entity.Usuarios;
 import org.consultas.viajes_itca.persistencia.exceptions.NonexistentEntityException;
@@ -221,11 +221,26 @@ public class UsuariosJpaController implements Serializable {
         }
     }
 
-    /*con sonsulta jql para ver el de que ide es el correo*/
-    public Usuarios findUsuarios(String email) {
+    public int getUsuariosCount() {
         EntityManager em = getEntityManager();
         try {
-            Query query = em.createQuery("SELECT u FROM Usuarios u WHERE u.email = :email");
+            CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
+            Root<Usuarios> rt = cq.from(Usuarios.class);
+            cq.select(em.getCriteriaBuilder().count(rt));
+            Query q = em.createQuery(cq);
+            return ((Long) q.getSingleResult()).intValue();
+        } finally {
+            em.close();
+        }
+    }
+    
+    
+    
+    /*con sonsulta jql para ver el de que ide es el correo*/
+    public Usuarios findUsuarios(String email) {
+        javax.persistence.EntityManager em = getEntityManager();
+        try {
+            javax.persistence.Query query = em.createQuery("SELECT u FROM Usuarios u WHERE u.email = :email");
             query.setParameter("email", email);
             try {
                 return (Usuarios) query.getSingleResult();
@@ -240,9 +255,9 @@ public class UsuariosJpaController implements Serializable {
     
 
     public Usuarios finUsuarios(String email, String pass) {
-        EntityManager em = getEntityManager();
+        javax.persistence.EntityManager em = getEntityManager();
         try {
-            Query query = em.createQuery("SELECT u FROM Usuarios u WHERE u.email = :email AND u.password = :pass");
+            javax.persistence.Query query = em.createQuery("SELECT u FROM Usuarios u WHERE u.email = :email AND u.password = :pass");
             query.setParameter("email", email);
             query.setParameter("pass", pass);
             try {
@@ -258,30 +273,13 @@ public class UsuariosJpaController implements Serializable {
 
 
     public boolean existeUsuario(String email) {
-        EntityManager em = getEntityManager();
+        javax.persistence.EntityManager em = getEntityManager();
         try {
-            Query query = em.createQuery("SELECT u FROM Usuarios u WHERE u.email = :email");
+            javax.persistence.Query query = em.createQuery("SELECT u FROM Usuarios u WHERE u.email = :email");
             query.setParameter("email", email);
             return query.getResultList().size() > 0;
         } finally {
             em.close();
         }
     }
-
-
-
-
-    public int getUsuariosCount() {
-        EntityManager em = getEntityManager();
-        try {
-            CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<Usuarios> rt = cq.from(Usuarios.class);
-            cq.select(em.getCriteriaBuilder().count(rt));
-            Query q = em.createQuery(cq);
-            return ((Long) q.getSingleResult()).intValue();
-        } finally {
-            em.close();
-        }
-    }
-    
 }

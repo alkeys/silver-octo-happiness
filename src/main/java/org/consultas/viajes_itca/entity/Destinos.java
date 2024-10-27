@@ -4,8 +4,7 @@
  */
 package org.consultas.viajes_itca.entity;
 
-import java.io.Serializable;
-import java.util.Collection;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,8 +13,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.io.Serializable;
 
 /**
  *
@@ -30,11 +29,9 @@ import javax.persistence.Table;
     @NamedQuery(name = "Destinos.findByPais", query = "SELECT d FROM Destinos d WHERE d.pais = :pais"),
     @NamedQuery(name = "Destinos.findByTipoDestino", query = "SELECT d FROM Destinos d WHERE d.tipoDestino = :tipoDestino"),
     @NamedQuery(name = "Destinos.findByClima", query = "SELECT d FROM Destinos d WHERE d.clima = :clima"),
-    @NamedQuery(name = "Destinos.findByPopularidad", query = "SELECT d FROM Destinos d WHERE d.popularidad = :popularidad")})
+    @NamedQuery(name = "Destinos.findByPopularidad", query = "SELECT d FROM Destinos d WHERE d.popularidad = :popularidad"),
+    @NamedQuery(name = "Destinos.findByUrl", query = "SELECT d FROM Destinos d WHERE d.url = :url")})
 public class Destinos implements Serializable {
-
-    @jakarta.persistence.OneToMany(mappedBy = "idDestino")
-    private Collection<ImgDestino> imgDestinoCollection;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -52,10 +49,8 @@ public class Destinos implements Serializable {
     private String clima;
     @Column(name = "popularidad")
     private Integer popularidad;
-    @OneToMany(mappedBy = "destinoId")
-    private Collection<ViajesPorHacer> viajesPorHacerCollection;
-    @OneToMany(mappedBy = "destinoId")
-    private Collection<Favoritos> favoritosCollection;
+    @Column(name = "url")
+    private String url;
 
     public Destinos() {
     }
@@ -112,20 +107,12 @@ public class Destinos implements Serializable {
         this.popularidad = popularidad;
     }
 
-    public Collection<ViajesPorHacer> getViajesPorHacerCollection() {
-        return viajesPorHacerCollection;
+    public String getUrl() {
+        return url;
     }
 
-    public void setViajesPorHacerCollection(Collection<ViajesPorHacer> viajesPorHacerCollection) {
-        this.viajesPorHacerCollection = viajesPorHacerCollection;
-    }
-
-    public Collection<Favoritos> getFavoritosCollection() {
-        return favoritosCollection;
-    }
-
-    public void setFavoritosCollection(Collection<Favoritos> favoritosCollection) {
-        this.favoritosCollection = favoritosCollection;
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     @Override
@@ -151,14 +138,6 @@ public class Destinos implements Serializable {
     @Override
     public String toString() {
         return "org.consultas.viajes_itca.entity.Destinos[ destinoId=" + destinoId + " ]";
-    }
-
-    public Collection<ImgDestino> getImgDestinoCollection() {
-        return imgDestinoCollection;
-    }
-
-    public void setImgDestinoCollection(Collection<ImgDestino> imgDestinoCollection) {
-        this.imgDestinoCollection = imgDestinoCollection;
     }
     
 }

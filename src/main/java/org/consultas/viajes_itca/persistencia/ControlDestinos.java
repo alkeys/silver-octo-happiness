@@ -1,7 +1,6 @@
 package org.consultas.viajes_itca.persistencia;
 
 import org.consultas.viajes_itca.entity.Destinos;
-import org.consultas.viajes_itca.entity.ImgDestino;
 
 import javax.persistence.EntityManagerFactory;
 import java.util.List;
