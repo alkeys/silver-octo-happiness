@@ -42,6 +42,9 @@ if (usuario == null) {
                     <li class="nav-item">
                         <a class="nav-link" href="misviajes.jsp">Mis Viajes</a>
                     </li>
+                       <li class="nav-item">
+                    <a class="nav-link active" href="misfavoritos.jsp">Mis Favoritos</a>
+                </li>
                     <li class="nav-item">
                         <a class="nav-link" href="perfilUsuario.jsp">Perfil</a>
                     </li>
