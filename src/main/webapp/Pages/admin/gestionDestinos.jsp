@@ -25,16 +25,16 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="dashboard.html">Dashboard</a>
+                        <a class="nav-link" href="panelAdmin.jsp">Dashboard</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="gestion-destinos.html">Gestión de Destinos</a>
+                        <a class="nav-link active" href="gestionDestinos.jsp">Gestión de Destinos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="gestion-usuarios.html">Gestión de Usuarios</a>
+                        <a class="nav-link" href="gestionUsuario.jsp">Gestión de Usuarios</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="analisis.html">Análisis y Reportes</a>
+                        <a class="nav-link" href="analisisReportes.jsp">Análisis y Reportes</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link btn btn-outline-primary" href="../Cerrar-Sesion">Cerrar Sesión</a>
@@ -98,8 +98,8 @@
                     <td>Tropical</td>
                     <td><img src="ruta/a/la/imagen.jpg" alt="Cancún" style="width: 100px;" /></td>
                     <td>
-                        <button class="btn btn-warning btn-sm" onclick="editarDestino(this)">Editar</button>
-                        <button class="btn btn-danger btn-sm" onclick="eliminarDestino(this)">Eliminar</button>
+                        <a href="editarDestinoTuristico.jsp" class="btn btn-warning btn-sm">Editar</a>
+                        <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal">Eliminar</button>
                     </td>
                 </tr>
                 <tr>
@@ -108,13 +108,31 @@
                     <td>Templado</td>
                     <td><img src="ruta/a/la/imagen.jpg" alt="París" style="width: 100px;" /></td>
                     <td>
-                        <button class="btn btn-warning btn-sm" onclick="editarDestino(this)">Editar</button>
-                        <button class="btn btn-danger btn-sm" onclick="eliminarDestino(this)">Eliminar</button>
+                        <a href="editarDestinoTuristico.jsp" class="btn btn-warning btn-sm">Editar</a>
+                        <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal">Eliminar</button>
                     </td>
                 </tr>
-                <!-- Más destinos se pueden agregar aquí -->
             </tbody>
         </table>
+    </div>
+
+    <!-- Modal de Confirmación -->
+    <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirmDeleteModalLabel">Confirmar Eliminación</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body">
+                    ¿Estás seguro de que deseas eliminar este destino?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-danger">Eliminar</button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- Footer -->
@@ -123,51 +141,6 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        // Función para añadir destinos
-        document.getElementById('formDestino').addEventListener('submit', function(event) {
-            event.preventDefault();
-            const nombre = document.getElementById('nombreDestino').value;
-            const tipo = document.getElementById('tipoDestino').value;
-            const clima = document.getElementById('climaDestino').value;
-            const urlImagen = document.getElementById('urlImagen').value;
-
-            const nuevaFila = `<tr>
-                <td>${nombre}</td>
-                <td>${tipo}</td>
-                <td>${clima}</td>
-                <td><img src="${urlImagen}" alt="${nombre}" style="width: 100px;" /></td>
-                <td>
-                    <button class="btn btn-warning btn-sm" onclick="editarDestino(this)">Editar</button>
-                    <button class="btn btn-danger btn-sm" onclick="eliminarDestino(this)">Eliminar</button>
-                </td>
-            </tr>`;
-            document.getElementById('destinosList').insertAdjacentHTML('beforeend', nuevaFila);
-            this.reset(); // Reiniciar el formulario
-        });
-
-        // Función para editar destinos
-        function editarDestino(btn) {
-            const fila = btn.closest('tr');
-            const nombre = fila.cells[0].innerText;
-            const tipo = fila.cells[1].innerText;
-            const clima = fila.cells[2].innerText;
-            const imagen = fila.cells[3].querySelector('img').src;
-
-            document.getElementById('nombreDestino').value = nombre;
-            document.getElementById('tipoDestino').value = tipo;
-            document.getElementById('climaDestino').value = clima;
-            document.getElementById('urlImagen').value = imagen; // Usar la URL de la imagen
-
-            fila.remove(); // Eliminar la fila actual para ser editada
-        }
-
-        // Función para eliminar destinos
-        function eliminarDestino(btn) {
-            const fila = btn.closest('tr');
-            fila.remove();
-        }
-    </script>
 
 </body>
 </html>

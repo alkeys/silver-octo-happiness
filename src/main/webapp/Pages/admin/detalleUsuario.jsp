@@ -65,7 +65,7 @@
                         <option value="aventura">Aventura</option>
                     </select>
                 </p>
-                <a href="gestion-usuarios.html" class="btn btn-primary">Regresar a la Lista</a>
+                <a href="gestionUsuario.jsp" class="btn btn-primary">Regresar a la Lista</a>
             </div>
         </div>
     </div>

@@ -15,7 +15,7 @@
 
     if (usuario == null) {
         response.sendRedirect("../../index.jsp");
-    }else {
+    }else{
             Control control = new Control();
     List<ImgDestino> imgDestinos=null;
     List<Destinos> destinos = (List<Destinos>) session.getAttribute("destinos");

@@ -32,16 +32,16 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" href="dashboard.html">Dashboard</a>
+                        <a class="nav-link active" href="panelAdmin.jsp">Dashboard</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="gestion-destinos.html">Gestión de Destinos</a>
+                        <a class="nav-link" href="gestionDestinos.jsp">Gestión de Destinos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="gestion-usuarios.html">Gestión de Usuarios</a>
+                        <a class="nav-link" href="gestionUsuario.jsp">Gestión de Usuarios</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="analisis.html">Análisis y Reportes</a>
+                        <a class="nav-link" href="analisisReportes.jsp">Análisis y Reportes</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link btn btn-outline-primary" href="../../Cerrar-Sesion">Cerrar Sesión</a>

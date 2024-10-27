@@ -25,16 +25,16 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="dashboard.html">Dashboard</a>
+                        <a class="nav-link" href="panelAdmin.jsp">Dashboard</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="gestion-destinos.html">Gestión de Destinos</a>
+                        <a class="nav-link" href="gestionDestinos.jsp">Gestión de Destinos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="gestion-usuarios.html">Gestión de Usuarios</a>
+                        <a class="nav-link active" href="gestionUsuario.jsp">Gestión de Usuarios</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="analisis.html">Análisis y Reportes</a>
+                        <a class="nav-link" href="analisisReportes.jsp">Análisis y Reportes</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link btn btn-outline-primary" href="../Cerrar-Sesion">Cerrar Sesión</a>
@@ -69,8 +69,8 @@
                     <td>juan.perez@example.com</td>
                     <td>Usuario</td>
                     <td>
-                        <a href="ver-detalle.html" class="btn btn-info btn-sm">Ver Detalle</a>
-                        <a href="modificar-usuario.html" class="btn btn-warning btn-sm">Modificar</a>
+                        <a href="detalleUsuario.jsp" class="btn btn-info btn-sm">Ver Detalle</a>
+                        <a href="vistaModificarUsuario.jsp" class="btn btn-warning btn-sm">Modificar</a>
                         <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#eliminarModal">Eliminar</button>
                     </td>
                 </tr>
@@ -80,8 +80,8 @@
                     <td>ana.gomez@example.com</td>
                     <td>Administrador</td>
                     <td>
-                        <a href="ver-detalle.html" class="btn btn-info btn-sm">Ver Detalle</a>
-                        <a href="modificar-usuario.html" class="btn btn-warning btn-sm">Modificar</a>
+                        <a href="detalleUsuario.jsp" class="btn btn-info btn-sm">Ver Detalle</a>
+                        <a href="vistaModificarUsuario.jsp" class="btn btn-warning btn-sm">Modificar</a>
                         <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#eliminarModal">Eliminar</button>
                     </td>
                 </tr>

@@ -76,7 +76,7 @@
                 </select>
             </div>
             <button type="submit" class="btn btn-success">Guardar Cambios</button>
-            <a href="gestion-usuarios.html" class="btn btn-secondary">Cancelar</a>
+            <a href="gestionUsuario.jsp" class="btn btn-secondary">Cancelar</a>
         </form>
     </div>
 
