@@ -206,4 +206,8 @@ public class Control {
     public void EliminarUsuario(Usuarios usuario) {
         controlUsuario.destroy(usuario.getUserId());
     }
+
+    public long getPopularidadTipo(String tipo) {
+        return controlDestinos.findCantidadTipoPopularidad(tipo);
+    }
 }

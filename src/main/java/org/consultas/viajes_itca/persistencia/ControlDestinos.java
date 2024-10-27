@@ -39,4 +39,14 @@ public class ControlDestinos extends AbstractJpaController<Destinos> {
         destinosJpaController = new DestinosJpaController(emf);
         return destinosJpaController.findCantidadClima(clima);
     }
+
+    public long findCantidadTipo(String tipo) {
+        destinosJpaController = new DestinosJpaController(emf);
+        return destinosJpaController.findCantidadTipo(tipo);
+    }
+
+    public long findCantidadTipoPopularidad(String tipo) {
+        destinosJpaController = new DestinosJpaController(emf);
+        return destinosJpaController.findCantidadTipoPopularidad(tipo);
+    }
 }

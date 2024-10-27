@@ -65,7 +65,7 @@ if (usuario == null) {
     <!-- Formulario de Información Personal -->
     <div class="container my-5">
         <h2 class="text-center mb-4">Actualizar Información Personal</h2>
-        <form action="../../Modificar-User" method="post">
+        <form action="../../ActualizarUsernoadmin" method="post">
             <div class="mb-3">
                 <label for="nombre" class="form-label"  >Nombre Completo</label>
                 <input type="text" class="form-control" name="nombre" id="nombre" placeholder="<%=usuario.getNombre()%>" required>

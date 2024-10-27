@@ -179,4 +179,26 @@ public class DestinosJpaController implements Serializable {
             em.close();
         }
     }
+
+    public long findCantidadTipo(String tipo) {
+        EntityManager em = getEntityManager();
+        try {
+            Query query = em.createQuery("SELECT COUNT(distinct d) FROM Destinos d WHERE d.tipoDestino = :tipo");
+            query.setParameter("tipo", tipo);
+            return (long) query.getSingleResult();
+        } finally {
+            em.close();
+        }
+    }
+
+    public long findCantidadTipoPopularidad(String tipo) {
+        EntityManager em = getEntityManager();
+        try {
+            Query query = em.createQuery("SELECT COUNT(distinct d) FROM Destinos d WHERE d.tipoDestino = :tipo AND d.popularidad >= 0");
+            query.setParameter("tipo", tipo);
+            return (long) query.getSingleResult();
+        } finally {
+            em.close();
+        }
+    }
 }

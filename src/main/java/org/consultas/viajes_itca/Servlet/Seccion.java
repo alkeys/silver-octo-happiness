@@ -57,8 +57,6 @@ public void doGet(HttpServletRequest request, HttpServletResponse response) thro
                     request.getSession().setAttribute("destinosMasValorados", destinosMasValorados);
                     request.getSession().setAttribute("usuarios", usuarios);
                     request.getSession().setAttribute("destinosAdmin", destinosAdmin);
-
-
                     response.sendRedirect("Pages/admin/panelAdmin.jsp");
                 } else {
                     response.sendRedirect("Pages/user/home.jsp");

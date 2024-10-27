@@ -1,4 +1,4 @@
-<%-- 
+<%@ page import="org.consultas.viajes_itca.control.Control" %><%--
     Document   : analisisReportes
     Created on : 25 oct 2024, 22:27:01
     Author     : enocc
@@ -82,6 +82,8 @@
         </form>
     </div>
 
+
+
     <!-- Gráficos -->
     <div class="container my-5">
         <h2 class="mb-4">Gráficos de Análisis</h2>
@@ -92,7 +94,9 @@
                     <div class="card-body">
                         <!-- Aquí se puede integrar un gráfico de barras -->
                         <div style="height: 300px; background-color: #f8f9fa; text-align: center; line-height: 300px;">
-                            Gráfico de Barras
+
+                                <canvas id="graficoTiposViaje"></canvas>
+
                         </div>
                     </div>
                 </div>
@@ -102,25 +106,118 @@
                 <div class="card">
                     <div class="card-body">
                         <!-- Aquí se puede integrar un gráfico de pastel -->
-                        <div style="height: 300px; background-color: #f8f9fa; text-align: center; line-height: 300px;">
-                            Gráfico de Pastel
-                        </div>
+
+                            <canvas id="graficoTiposViajePAstel"></canvas>
+
                     </div>
                 </div>
             </div>
             <div class="col-md-12 mb-4">
-                <h5>Gráfico de Dispersión: Relación entre Popularidad, Clima y Tipo de Viaje</h5>
+                <h5>Gráfico de Dispersión: Relación entre Popularidad, Clima </h5>
                 <div class="card">
                     <div class="card-body">
                         <!-- Aquí se puede integrar un gráfico de dispersión -->
-                        <div style="height: 300px; background-color: #f8f9fa; text-align: center; line-height: 300px;">
-                            Gráfico de Dispersión
-                        </div>
+
+                            <canvas id="graficoDispercion" width="400" height="400"></canvas>
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <%
+        Control control = new Control();
+        long playa = control.getCantidadTipoviajes("playa");
+        long montana = control.getCantidadTipoviajes("montaña");
+        long ciudad = control.getCantidadTipoviajes("ciudad");
+        long aventura = control.getCantidadTipoviajes("aventura");
+    %>
+PAstel
+    <script>
+        const ctx1 = document.getElementById('graficoTiposViaje').getContext('2d');
+        new Chart(ctx1, {
+            type: 'bar',
+            data: {
+                labels: ['Playa', 'Montaña', 'Ciudad', 'Aventura'],
+                datasets: [{
+                    label: 'Usuarios por Tipo de Destino',
+                    data: [<%=playa%>,<%=montana%>,<%=ciudad%>, <%=aventura%>],
+                    backgroundColor: ['#3498db', '#2ecc71', '#e74c3c', '#9b59b6']
+                }]
+            }
+        });
+
+        // Gráfico de clima preferido
+        const ctx2 = document.getElementById('graficoTiposViajePAstel').getContext('2d');
+        new Chart(ctx2, {
+            type: 'pie',
+            data: {
+                labels: ['Playa', 'Montaña', 'Ciudad', 'Aventura'],
+                datasets: [{
+                    data:  [<%=playa%>,<%=montana%>,<%=ciudad%>, <%=aventura%>],
+                    backgroundColor: ['#f1c40f', '#3498db', '#95a5a6', '#95a5a6']
+                }]
+            }
+        });
+
+
+    </script>
+
+
+
+
+    <%
+        long climaPlaya = control.getCantidadClimaviajes("cálido");
+        long climaMontana = control.getCantidadClimaviajes("templado");
+        long climaCiudad = control.getCantidadClimaviajes("frío");
+        long climaAventura = control.getCantidadClimaviajes("templado");
+        long popularidadPlaya = control.getPopularidadTipo("playa");
+        long popularidadMontana = control.getPopularidadTipo("montaña");
+        long popularidadCiudad = control.getPopularidadTipo("ciudad");
+        long popularidadAventura = control.getPopularidadTipo("aventura");
+        //variables tipos de viajes
+    %>
+
+    <script>
+        const ctx3 = document.getElementById('graficoDispercion').getContext('2d');
+        new Chart(ctx3, {
+            type: 'scatter',
+            data: {
+                datasets: [{
+                    label: 'Relación entre Popularidad y Clima',
+                    data: [
+                        { x: <%=climaPlaya%>, y: <%=popularidadPlaya%>, label: 'Playa' },
+                        { x: <%=climaMontana%>, y: <%=popularidadMontana%>, label: 'Montaña' },
+                        { x: <%=climaCiudad%>, y: <%=popularidadCiudad%>, label: 'Ciudad' },
+                        { x: <%=climaAventura%>, y: <%=popularidadAventura%>, label: 'Aventura' }
+                    ],
+                    backgroundColor: '#e67e22'
+                }]
+            },
+            options: {
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Clima'
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Popularidad'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+
 
     <!-- Footer -->
     <footer class="bg-dark text-white text-center py-3">
