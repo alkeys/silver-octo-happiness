@@ -1,10 +1,24 @@
-<%-- 
+<%@ page import="org.consultas.viajes_itca.entity.Usuarios" %>
+<%@ page import="java.util.List" %><%--
     Document   : detalleUsuario
     Created on : 25 oct 2024, 22:20:19
     Author     : enocc
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<%
+    List<Usuarios> usuarios = (List<Usuarios>) session.getAttribute("usuarios");
+    int id = Integer.parseInt(request.getParameter("userxd"));
+    Usuarios usuario = null;
+    for (Usuarios u : usuarios) {
+        if (u.getUserId() == id) {
+            usuario = u;
+            break;
+        }
+    }
+
+%>
+<%@page contentType="text/html" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -15,65 +29,64 @@
 </head>
 <body>
 
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-            <a class="navbar-brand" href="dashboard.html">Panel de Administración</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="dashboard.html">Dashboard</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="gestion-destinos.html">Gestión de Destinos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="gestion-usuarios.html">Gestión de Usuarios</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="analisis.html">Análisis y Reportes</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link btn btn-outline-primary" href="../Cerrar-Sesion">Cerrar Sesión</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <div class="bg-light text-center p-5">
-        <h1>Detalles del Usuario</h1>
-    </div>
-
-    <!-- Detalles del Usuario -->
-    <div class="container my-5">
-        <h2 class="mb-4">Información del Usuario</h2>
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">Nombre: Juan Pérez</h5>
-                <p class="card-text">Correo Electrónico: juan.perez@example.com</p>
-                <p class="card-text">Contraseña: ********</p>
-                <p class="card-text">Preferencias de Viaje: 
-                    <select class="form-select" disabled>
-                        <option value="playa" selected>Playa</option>
-                        <option value="montana">Montaña</option>
-                        <option value="ciudad">Ciudad</option>
-                        <option value="aventura">Aventura</option>
-                    </select>
-                </p>
-                <a href="gestionUsuario.jsp" class="btn btn-primary">Regresar a la Lista</a>
-            </div>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand" href="dashboard.html">Panel de Administración</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="dashboard.html">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="gestion-destinos.html">Gestión de Destinos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="gestion-usuarios.html">Gestión de Usuarios</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="analisis.html">Análisis y Reportes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link btn btn-outline-primary" href="../Cerrar-Sesion">Cerrar Sesión</a>
+                </li>
+            </ul>
         </div>
     </div>
+</nav>
 
-    <!-- Footer -->
-    <footer class="bg-dark text-white text-center py-3">
-        <p>&copy; 2024 Agencia de Viajes. Todos los derechos reservados.</p>
-    </footer>
+<!-- Hero Section -->
+<div class="bg-light text-center p-5">
+    <h1>Detalles del Usuario</h1>
+</div>
+
+<!-- Detalles del Usuario -->
+<div class="container my-5">
+    <h2 class="mb-4">Información del Usuario</h2>
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Nombre: <%=usuario.getNombre()%>
+            </h5>
+            <p class="card-text">Correo Electrónico: <%=usuario.getEmail()%>
+            </p>
+            <p class="card-text">Contraseña: <%=usuario.getPassword()%>
+            </p>
+            <p class="card-text">Preferencias de Viaje:
+                <label class="badge bg-primary"><%=usuario.getPreferencias()%>
+                </label>
+            </p>
+            <a href="gestionUsuario.jsp" class="btn btn-primary">Regresar a la Lista</a>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="bg-dark text-white text-center py-3">
+    <p>&copy; 2024 Agencia de Viajes. Todos los derechos reservados.</p>
+</footer>
 
 </body>
 </html>

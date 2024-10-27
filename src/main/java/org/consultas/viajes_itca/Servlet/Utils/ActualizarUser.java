@@ -16,12 +16,12 @@ public class ActualizarUser extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("text/html");
         Control control = new Control();
-        Usuarios user = (Usuarios) request.getSession().getAttribute("usuario");
-
+        int id = Integer.parseInt(request.getParameter("id"));
         String nombre = request.getParameter("nombre");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         String preferencias = request.getParameter("preferencia");
+        Usuarios user = control.getUsuario(id);
 
         if (nombre != null && !nombre.equals(user.getNombre())) {
             user.setNombre(nombre);
@@ -39,7 +39,7 @@ public class ActualizarUser extends HttpServlet {
 
         try {
             control.updateUsuario(user);
-            response.sendRedirect("Pages/user/home.jsp");
+            response.sendRedirect("Pages/admin/gestionUsuario.jsp");
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

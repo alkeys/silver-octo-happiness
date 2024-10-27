@@ -12,6 +12,8 @@ import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import java.util.List;
+
+import org.consultas.viajes_itca.entity.Destinos;
 import org.consultas.viajes_itca.entity.Favoritos;
 import org.consultas.viajes_itca.entity.Usuarios;
 import org.consultas.viajes_itca.persistencia.exceptions.NonexistentEntityException;
@@ -165,6 +167,19 @@ public class FavoritosJpaController implements Serializable {
         }
     }
 
+    public List<Favoritos> findFavoritos(Destinos destino) {
+        EntityManager em = getEntityManager();
+        try {
+            return em.createQuery("SELECT f FROM Favoritos f WHERE f.destinoId = :destinoId")
+                    .setParameter("destinoId", destino)
+                    .getResultList();
+        } catch (Exception e) {
+            return null;
+        } finally {
+            em.close();
+        }
+    }
+
 
     public int getFavoritosCount() {
         EntityManager em = getEntityManager();
@@ -203,6 +218,20 @@ public class FavoritosJpaController implements Serializable {
         try {
             return em.createQuery("SELECT f FROM Favoritos f WHERE f.userId = :userId")
                     .setParameter("userId", usuario)
+                    .getResultList();
+        } catch (Exception e) {
+            return null;
+        } finally {
+            em.close();
+        }
+    }
+
+
+    public List<Integer> findDestinosFavoritos(int destino) {
+        EntityManager em = getEntityManager();
+        try {
+            return em.createQuery("SELECT f.favoritoId FROM Favoritos f WHERE f.destinoId.destinoId = :destinoId")
+                    .setParameter("destinoId", destino)
                     .getResultList();
         } catch (Exception e) {
             return null;

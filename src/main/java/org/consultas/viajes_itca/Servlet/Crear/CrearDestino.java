@@ -10,6 +10,7 @@ import org.consultas.viajes_itca.control.Control;
 import org.consultas.viajes_itca.entity.Destinos;
 
 import java.io.IOException;
+import java.util.List;
 
 @WebServlet(name = "CrearDestino", urlPatterns = {"/CrearDestino"})
 public class CrearDestino extends HttpServlet {
@@ -32,6 +33,8 @@ public class CrearDestino extends HttpServlet {
 
 
         control.crearDestino(destino);
+        List<Destinos> destinosAdmin = control.getDestinos();
+        request.getSession().setAttribute("destinosAdmin", destinosAdmin);
         response.sendRedirect("Pages/admin/gestionDestinos.jsp");
     }
 

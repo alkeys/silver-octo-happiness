@@ -236,4 +236,26 @@ public class ViajesPorHacerJpaController implements Serializable {
             em.close();
         }
     }
+
+    public void destroyDestino(Integer destinoId) {
+        EntityManager em = getEntityManager();
+        try {
+            Query q = em.createQuery("DELETE FROM ViajesPorHacer v WHERE v.destinoId.destinoId = :destinoId");
+            q.setParameter("destinoId", destinoId);
+            q.executeUpdate();
+        } finally {
+            em.close();
+        }
+    }
+
+    public List<Integer> findDestinosFavoritos(int destino) {
+        EntityManager em = getEntityManager();
+        try {
+            Query q = em.createQuery("SELECT v.viajeId FROM ViajesPorHacer v WHERE v.destinoId.destinoId = :destinoId");
+            q.setParameter("destinoId", destino);
+            return q.getResultList();
+        } finally {
+            em.close();
+        }
+    }
 }

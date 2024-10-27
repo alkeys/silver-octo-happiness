@@ -16,10 +16,7 @@ import org.consultas.viajes_itca.entity.Destinos;
 import org.consultas.viajes_itca.entity.Favoritos;
 import org.consultas.viajes_itca.persistencia.exceptions.NonexistentEntityException;
 
-/**
- *
- * @author alex
- */
+
 public class DestinosJpaController implements Serializable {
 
     public DestinosJpaController(EntityManagerFactory emf) {

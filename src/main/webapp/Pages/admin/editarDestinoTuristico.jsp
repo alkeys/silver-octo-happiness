@@ -1,10 +1,23 @@
-<%-- 
+<%@ page import="java.util.List" %>
+<%@ page import="org.consultas.viajes_itca.entity.Destinos" %><%--
     Document   : editarDestinoTuristico
     Created on : 26 oct 2024, 22:11:15
     Author     : enocc
 --%>
 
+<%
+    int id= Integer.parseInt(request.getParameter("id"));
+    List<Destinos> destinos = (List<Destinos>) session.getAttribute("destinosAdmin");
+    Destinos destino = null;
+    for (Destinos d : destinos) {
+        if (d.getDestinoId() == id) {
+            destino = d;
+            break;
+        }
+    }
+%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -17,20 +30,24 @@
 
     <!-- Hero Section -->
     <div class="bg-light text-center p-5">
-        <h1>Editar Destino Turístico</h1>
+        <h1>Editar Destino Turístico </h1>
     </div>
 
     <!-- Formulario de Edición de Destino -->
     <div class="container my-5">
         <h2 class="mb-4">Modificar Información del Destino</h2>
-        <form>
+        <form method="post" action="../../AutalizarDestino">
             <div class="mb-3">
                 <label for="nombreDestino" class="form-label">Nombre del Destino</label>
-                <input type="text" class="form-control" id="nombreDestino" value="Playa El Tunco" required>
+                <input type="text" class="form-control" name="nombreDestino" id="nombreDestino" value="<%=destino.getNombre()%>" required>
+            </div>
+            <div>
+               <%-- no se puede modificar el id--%>
+                <input type="hidden" name="id" value="<%=destino.getDestinoId()%>">
             </div>
             <div class="mb-3">
-                <label for="tipoDestino" class="form-label">Tipo de Destino</label>
-                <select class="form-select" id="tipoDestino">
+                <label for="tipoDestino" class="form-label">Tipo de Destino <%=destino.getTipoDestino()%></label>
+                <select class="form-select" name="tipoDestino" id="tipoDestino">
                     <option value="playa" selected>Playa</option>
                     <option value="montana">Montaña</option>
                     <option value="ciudad">Ciudad</option>
@@ -39,11 +56,15 @@
             </div>
             <div class="mb-3">
                 <label for="clima" class="form-label">Clima</label>
-                <input type="text" class="form-control" id="clima" value="Cálido y soleado" required>
+               <input type="text" class="form-control" name="clima" id="clima" value="<%=destino.getClima()%>" required>
+            </div>
+            <div class="mb-3">
+                <label for="clima" class="form-label">Pais</label>
+                <input type="text" class="form-control" name="pais" id="pais" value="<%=destino.getPais()%>" required>
             </div>
             <div class="mb-3">
                 <label for="imagenURL" class="form-label">Imagen (URL)</label>
-                <input type="url" class="form-control" id="imagenURL" value="https://example.com/tunco.jpg" required>
+                <input type="url" class="form-control" name="urlimg" id="imagenURL" value="<%=destino.getUrl()%>" required>
             </div>
             <button type="submit" class="btn btn-success">Guardar Cambios</button>
             <a href="gestionDestinos.jsp" class="btn btn-secondary">Cancelar</a>

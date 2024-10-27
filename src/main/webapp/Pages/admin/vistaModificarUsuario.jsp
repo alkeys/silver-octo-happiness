@@ -1,9 +1,21 @@
-<%-- 
+<%@ page import="org.consultas.viajes_itca.entity.Usuarios" %>
+<%@ page import="java.util.List" %><%--
     Document   : vistaModificarUsuario
     Created on : 25 oct 2024, 22:16:16
     Author     : enocc
 --%>
+<%
+    List<Usuarios> usuarios = (List<Usuarios>) session.getAttribute("usuarios");
+    int id = Integer.parseInt(request.getParameter("userxd"));
+    Usuarios usuario = null;
+    for (Usuarios u : usuarios) {
+        if (u.getUserId() == id) {
+            usuario = u;
+            break;
+        }
+    }
 
+%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="es">
@@ -52,22 +64,23 @@
     <!-- Formulario de Modificación -->
     <div class="container my-5">
         <h2 class="mb-4">Editar Información del Usuario</h2>
-        <form>
+        <form action="../../Modificar-User" method="post">
+            <input type="hidden" name="id" value="<%=usuario.getUserId()%>">
             <div class="mb-3">
                 <label for="nombre" class="form-label">Nombre</label>
-                <input type="text" class="form-control" id="nombre" value="Juan Pérez" required>
+                <input type="text" class="form-control"  name="nombre" id="nombre" value="<%=usuario.getNombre()%>" required>
             </div>
             <div class="mb-3">
                 <label for="email" class="form-label">Correo Electrónico</label>
-                <input type="email" class="form-control" id="email" value="juan.perez@example.com" required>
+                <input type="email" class="form-control" name="email" id="email" value="<%=usuario.getEmail()%>" required>
             </div>
             <div class="mb-3">
                 <label for="contrasena" class="form-label">Contraseña</label>
-                <input type="password" class="form-control" id="contrasena" placeholder="Ingrese nueva contraseña">
+                <input type="password" class="form-control" name="password" id="contrasena" placeholder="Ingrese nueva contraseña">
             </div>
             <div class="mb-3">
-                <label for="preferencias" class="form-label">Preferencias de Viaje</label>
-                <select class="form-select" id="preferencias">
+                <label for="preferencia" class="form-label">Preferencias de Viaje</label>
+                <select class="form-select" name="preferencia" id="preferencia">
                     <option value="" disabled selected>Seleccione una opción</option>
                     <option value="playa">Playa</option>
                     <option value="montana">Montaña</option>

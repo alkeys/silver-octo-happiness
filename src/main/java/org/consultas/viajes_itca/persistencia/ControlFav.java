@@ -1,7 +1,9 @@
 package org.consultas.viajes_itca.persistencia;
 
+import org.consultas.viajes_itca.entity.Destinos;
 import org.consultas.viajes_itca.entity.Favoritos;
 import org.consultas.viajes_itca.entity.Usuarios;
+import org.consultas.viajes_itca.persistencia.exceptions.NonexistentEntityException;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -41,4 +43,16 @@ public class ControlFav extends AbstractJpaController<Favoritos> {
         controlFav = new FavoritosJpaController(emf);
         return controlFav.getFavorito(userid, destinoId);
     }
+
+    public void destroyDestino(Integer destinoId) throws NonexistentEntityException {
+        controlFav = new FavoritosJpaController(emf);
+        controlFav.destroy(destinoId);
+    }
+
+    public List<Integer> findDestinosFavoritos(int destino) {
+        controlFav = new FavoritosJpaController(emf);
+        return controlFav.findDestinosFavoritos(destino);
+
+    }
+
 }

@@ -11,6 +11,7 @@ import org.consultas.viajes_itca.persistencia.ControlDestinos;
 import org.consultas.viajes_itca.persistencia.ControlFav;
 import org.consultas.viajes_itca.persistencia.ControlUsuario;
 import org.consultas.viajes_itca.persistencia.Controlviajes;
+import org.consultas.viajes_itca.persistencia.exceptions.NonexistentEntityException;
 
 import java.util.List;
 
@@ -27,7 +28,7 @@ public class Control {
         controlUsuario = new ControlUsuario(emf, Usuarios.class);
         controlDestinos = new ControlDestinos(emf, Destinos.class);
         controlFavorite = new ControlFav(emf, Favoritos.class);
-        controlViajes=new Controlviajes(emf, ViajesPorHacer.class);
+        controlViajes = new Controlviajes(emf, ViajesPorHacer.class);
     }
 
 
@@ -101,6 +102,7 @@ public class Control {
     public Favoritos getFavorite(int id) {
         return controlFavorite.find(id);
     }
+
     public Favoritos getFavorite(Usuarios usuario) {
         return controlFavorite.findFavoritos(usuario);
     }
@@ -143,6 +145,7 @@ public class Control {
 
     /**
      * este metoo devolvera la cantidad de usuarios que tienen el destino en sus viajes por hacer
+     *
      * @param destinoId
      * @return
      */
@@ -176,5 +179,31 @@ public class Control {
 
     public long getCantidadTipoviajes(String tipo) {
         return controlViajes.findCantidadTipo(tipo);
+    }
+
+    public void actualizarDestino(Destinos destino) throws Exception {
+        controlDestinos.edit(destino);
+    }
+
+
+    public void eliminarDestino(int destino) {
+        List<Integer> idfavoritos = controlFavorite.findDestinosFavoritos(destino);
+        List<Integer> idviajes = controlViajes.findDestinosFavoritos(destino);
+        for (int id : idfavoritos) {
+            controlFavorite.destroy(id);
+        }
+        for (int id : idviajes) {
+            controlViajes.destroy(id);
+        }
+        controlDestinos.destroy(destino);
+    }
+
+
+    public Usuarios getUsuario(int id) {
+        return controlUsuario.find(id);
+    }
+
+    public void EliminarUsuario(Usuarios usuario) {
+        controlUsuario.destroy(usuario.getUserId());
     }
 }

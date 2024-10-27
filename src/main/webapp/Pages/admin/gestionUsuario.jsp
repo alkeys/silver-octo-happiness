@@ -76,9 +76,12 @@
                     <td><%=usuario.getNombre()%></td>
                     <td><%=usuario.getEmail()%></td>
                     <td>
-                        <a href="detalleUsuario.jsp" class="btn btn-info btn-sm">Ver Detalle</a>
-                        <a href="vistaModificarUsuario.jsp" class="btn btn-warning btn-sm">Modificar</a>
-                        <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#eliminarModal">Eliminar</button>
+                        <a href="detalleUsuario.jsp?userxd=<%=usuario.getUserId()%>" class="btn btn-info btn-sm">Ver Detalle</a>
+                        <a href="vistaModificarUsuario.jsp?userxd=<%=usuario.getUserId()%>" class="btn btn-warning btn-sm">Modificar</a>
+                        <form  class="btn btn-danger btn-sm" action="../../EliminarUser" method="get">
+                            <input type="hidden" name="id" value="<%=usuario.getUserId()%>">
+                            <button  type="submit" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#eliminarModal">Eliminar</button>
+                        </form>
                     </td>
                 </tr>
                 <%
@@ -88,6 +91,15 @@
             </tbody>
         </table>
     </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function confirmDelete() {
+            const url = document.querySelector('.btn-danger[data-bs-target="#confirmDeleteModal"]').getAttribute('href');
+            window.location.href = url;
+        }
+    </script>
 
     <!-- Modal de Confirmación de Eliminación -->
     <div class="modal fade" id="eliminarModal" tabindex="-1" aria-labelledby="eliminarModalLabel" aria-hidden="true">
@@ -102,7 +114,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-danger">Eliminar</button>
+                    <button type="button"  class="btn btn-danger">Eliminar</button>
                 </div>
             </div>
         </div>

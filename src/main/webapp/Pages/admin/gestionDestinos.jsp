@@ -118,18 +118,22 @@
             <tbody id="destinosList">
             <%
                 Control control = new Control();
-                List<Destinos> destinos= control.getDestinos();
+                List<Destinos> destinos= (List<Destinos>) session.getAttribute("destinosAdmin");
                 for(Destinos destino: destinos){
             %>
                 <tr>
                     <td><%=destino.getDestinoId()%></td>
-                    <td><%=destino.getPais()%></td>
+                    <td><%=destino.getNombre()%></td>
                     <td><%=destino.getTipoDestino()%></td>
                     <td><%=destino.getClima()%></td>
                     <td><img src="<%=destino.getUrl()%>" alt="Cancún" style="width: 100px;" /></td>
                     <td>
-                        <a href="editarDestinoTuristico.jsp" class="btn btn-warning btn-sm">Editar</a>
-                        <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal">Eliminar</button>
+                        <a href="editarDestinoTuristico.jsp?id=<%=destino.getDestinoId()%>" class="btn btn-warning btn-sm">Editar</a>
+                        <form class="btn btn-danger btn-sm" method="get" action="../../EliminarDestino">
+                            <input type="hidden"  name="destinoId" value="<%=destino.getDestinoId()%>">
+                            <button type="submit"  class="btn btn-danger btn-sm">Eliminar</button>
+                        </form>
+
                     </td>
                 </tr>
             <%
@@ -140,24 +144,10 @@
         </table>
     </div>
 
-    <!-- Modal de Confirmación -->
-    <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="confirmDeleteModalLabel">Confirmar Eliminación</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-                </div>
-                <div class="modal-body">
-                    ¿Estás seguro de que deseas eliminar este destino?
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-danger">Eliminar</button>
-                </div>
-            </div>
-        </div>
-    </div>
+
+
+
+
 
     <!-- Footer -->
     <footer class="bg-dark text-white text-center py-3">
