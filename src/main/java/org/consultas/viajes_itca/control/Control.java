@@ -136,4 +136,21 @@ public class Control {
     public void ElimanarViaje(int id) {
         controlViajes.destroy(id);
     }
+
+    /**
+     * este metoo devolvera la cantidad de usuarios que tienen el destino en sus viajes por hacer
+     * @param destinoId
+     * @return
+     */
+    public int obtenerCantidadIdusuariosDestino(Destinos destinoId) {
+        return controlViajes.findCantidadIdusuariosDestino(destinoId);
+    }
+
+    public void ActualizarDestino(Destinos destino) throws Exception {
+        controlDestinos.edit(destino);
+    }
+
+    public long obtenerCantidadIdusuarios() {
+        return controlUsuario.findUsuariosCount();
+    }
 }

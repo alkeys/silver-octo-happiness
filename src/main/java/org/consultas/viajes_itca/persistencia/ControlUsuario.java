@@ -27,4 +27,7 @@ public class ControlUsuario extends AbstractJpaController<Usuarios>{
         return control.finUsuarios(email, password);
     }
 
+    public long findUsuariosCount() {
+        return control.getUsuariosCount();
+    }
 }

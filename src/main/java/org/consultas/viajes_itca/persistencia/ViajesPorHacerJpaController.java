@@ -12,6 +12,8 @@ import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import java.util.List;
+
+import org.consultas.viajes_itca.entity.Destinos;
 import org.consultas.viajes_itca.entity.Usuarios;
 import org.consultas.viajes_itca.entity.ViajesPorHacer;
 import org.consultas.viajes_itca.persistencia.exceptions.NonexistentEntityException;
@@ -193,5 +195,22 @@ public class ViajesPorHacerJpaController implements Serializable {
         } finally {
             em.close();
         }
+    }
+
+    /**
+     * este metoo devolvera la cantidad de usuarios que tienen el destino en sus viajes por hacer sin jquery
+     * @param destinoId
+     * @return
+     */
+    public long findCantidadIdusuariosDestino(Destinos destino) {
+        EntityManager em = getEntityManager();
+        try {
+            Query q = em.createQuery("SELECT COUNT(v) FROM ViajesPorHacer v WHERE v.destinoId = :destino");
+            q.setParameter("destino", destino);
+            return (long) q.getSingleResult();
+        } finally {
+            em.close();
+        }
+
     }
 }

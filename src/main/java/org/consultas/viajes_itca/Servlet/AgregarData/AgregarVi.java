@@ -30,11 +30,31 @@ public class AgregarVi extends HttpServlet {
             ViajesPorHacer viajesPorHacer = new ViajesPorHacer();
             viajesPorHacer.setUserId(usuario);
             viajesPorHacer.setDestinoId(destino);
+            long cantidadIdusuariosDestino=control.obtenerCantidadIdusuariosDestino(destino);
+            long cantidadIdusuarios=control.obtenerCantidadIdusuarios();
+
+            destino.setPopularidad(Popularidad(cantidadIdusuariosDestino,cantidadIdusuarios));
+            System.out.printf(cantidadIdusuarios+" "+cantidadIdusuariosDestino+" "+destino.getDestinoId());
+            try {
+                control.ActualizarDestino(destino);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
             control.agregarViajePorHacer(viajesPorHacer);
             List<ViajesPorHacer> viajes = control.obtenerViajesPorHacerList(usuario);
             request.getSession().setAttribute("viajes", viajes);
             response.sendRedirect("Pages/user/misviajes.jsp");
         }
 
+    }
+
+    /**
+     *  el 10 es el 100% de la popularidad de un destino se calcula la popularidad de un destino mediante la formula tomado en cuenta la cantidad de usuarios que han seleccionado un destino y la popularidad que tiene el destino si no es 0
+     *   cantidadIdusuariosDestino*100/10
+     * @param cantidadIdusuariosDestino cantidad de usuarios que han seleccionado un destino
+     * @return
+     */
+    public int Popularidad(long cantidadIdusuariosDestino,long cantidadIdusuarios){
+        return (int) (cantidadIdusuariosDestino*100/cantidadIdusuarios);
     }
 }
