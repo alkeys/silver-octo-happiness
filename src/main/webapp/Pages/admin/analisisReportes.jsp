@@ -37,7 +37,7 @@
                         <a class="nav-link active" href="analisisReportes.jsp">Análisis y Reportes</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link btn btn-outline-primary" href="../Cerrar-Sesion">Cerrar Sesión</a>
+                        <a class="nav-link btn btn-outline-primary" href="../../Cerrar-Sesion">Cerrar Sesión</a>
                     </li>
                 </ul>
             </div>
