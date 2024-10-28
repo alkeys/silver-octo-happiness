@@ -23,7 +23,7 @@ import org.consultas.viajes_itca.persistencia.exceptions.NonexistentEntityExcept
 public class UsuariosJpaController implements Serializable {
 
     public UsuariosJpaController(EntityManagerFactory emf) {
-        this.emf = emf;
+        this.emf =  emf;
     }
     private EntityManagerFactory emf = null;
 
