@@ -74,7 +74,7 @@
             <div class="card bg-info text-white mb-4">
                 <div class="card-body">
                     <h3>Cantidad de Usuarios</h3>
-                    <p class="display-4"><%=usuarios.size()%>
+                    <p class="display-4"><%=usuarios.size()-1%>
                     </p>
                 </div>
             </div>

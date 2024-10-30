@@ -8,6 +8,7 @@ import org.consultas.viajes_itca.control.Control;
 import org.consultas.viajes_itca.entity.Usuarios;
 
 import java.io.IOException;
+import java.util.List;
 
 @WebServlet(name = "ActualizarUsernoadmin", urlPatterns = {"/ActualizarUsernoadmin"})
 public class ActualizarUsernoadmin extends HttpServlet {
@@ -36,6 +37,8 @@ public class ActualizarUsernoadmin extends HttpServlet {
 
         try {
             control.updateUsuario(user);
+            List<Usuarios> usuarios = control.getUsuarios();
+            request.getSession().setAttribute("usuarios", usuarios);
             response.sendRedirect("Pages/user/home.jsp");
         } catch (Exception e) {
             throw new RuntimeException(e);

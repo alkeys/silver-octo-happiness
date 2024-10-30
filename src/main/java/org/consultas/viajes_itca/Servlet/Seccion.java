@@ -18,10 +18,7 @@ import org.consultas.viajes_itca.entity.Favoritos;
 import org.consultas.viajes_itca.entity.Usuarios;
 import org.consultas.viajes_itca.entity.ViajesPorHacer;
 
-/**
- *
- * @author alex
- */
+
 @WebServlet(name = "Seccion", urlPatterns = {"/Seccion"})
 public class Seccion extends HttpServlet {
 

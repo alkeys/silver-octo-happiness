@@ -10,6 +10,7 @@ import org.consultas.viajes_itca.entity.Destinos;
 import org.consultas.viajes_itca.entity.Usuarios;
 
 import java.io.IOException;
+import java.util.List;
 
 @WebServlet(name = "AutalizarDestino", urlPatterns = {"/AutalizarDestino"})
 public class AutalizarDestino extends HttpServlet {
@@ -41,7 +42,12 @@ public class AutalizarDestino extends HttpServlet {
         }
 
         try {
+
             control.actualizarDestino(destino);
+            List<Destinos> destinosAdmin = control.getDestinos();
+            request.getSession().setAttribute("destinosAdmin", destinosAdmin);
+            List<Destinos> destinosMasValorados = control.getDestinosMasValorados(2);
+            request.getSession().setAttribute("destinosMasValorados", destinosMasValorados);
             response.sendRedirect("Pages/admin/gestionDestinos.jsp");
         } catch (Exception e) {
             throw new RuntimeException(e);
