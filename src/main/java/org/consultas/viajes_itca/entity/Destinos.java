@@ -18,7 +18,7 @@ import java.io.Serializable;
 
 /**
  *
- * @author enoc
+ * @author alex
  */
 @Entity
 @Table(name = "destinos")
