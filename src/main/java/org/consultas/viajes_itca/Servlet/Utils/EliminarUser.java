@@ -22,6 +22,10 @@ public class EliminarUser  extends HttpServlet {
             int id=Integer.parseInt(request.getParameter("id"));
             Control control = new Control();
             Usuarios usuario = control.getUsuario(id);
+            if(usuario.getEmail().equalsIgnoreCase("admin@admin.com") && usuario.getNombre().equalsIgnoreCase("admin")){
+                response.sendRedirect("Pages/admin/gestionUsuario.jsp");
+                return;
+            }
             List<Favoritos> fav = control.getListFav(usuario);
             List< ViajesPorHacer> viajes = control.getListViajes(usuario);
             try {

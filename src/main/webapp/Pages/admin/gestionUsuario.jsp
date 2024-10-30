@@ -93,32 +93,9 @@
     </div>
 
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        function confirmDelete() {
-            const url = document.querySelector('.btn-danger[data-bs-target="#confirmDeleteModal"]').getAttribute('href');
-            window.location.href = url;
-        }
-    </script>
 
-    <!-- Modal de Confirmación de Eliminación -->
-    <div class="modal fade" id="eliminarModal" tabindex="-1" aria-labelledby="eliminarModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="eliminarModalLabel">Confirmar Eliminación</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    ¿Estás seguro de que deseas eliminar a este usuario?
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="button"  class="btn btn-danger">Eliminar</button>
-                </div>
-            </div>
-        </div>
-    </div>
+
+
 
     <!-- Footer -->
     <footer class="bg-dark text-white text-center py-3">
