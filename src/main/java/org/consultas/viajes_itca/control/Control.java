@@ -67,6 +67,9 @@ public class Control {
         return controlDestinos.findAll();
     }
 
+
+
+
     public List<Destinos> getDestinos(int maxResults, int firstResult) {
         return controlDestinos.findEntities(maxResults, firstResult);
     }
@@ -189,12 +192,21 @@ public class Control {
     public void eliminarDestino(int destino) {
         List<Integer> idfavoritos = controlFavorite.findDestinosFavoritos(destino);
         List<Integer> idviajes = controlViajes.findDestinosFavoritos(destino);
-        for (int id : idfavoritos) {
-            controlFavorite.destroy(id);
+        try {
+            if (idfavoritos != null) {
+                for (int id : idfavoritos) {
+                    controlFavorite.destroy(id);
+                }
+            }
+            if (idviajes != null){
+                for (int id : idviajes) {
+                    controlViajes.destroy(id);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        for (int id : idviajes) {
-            controlViajes.destroy(id);
-        }
+
         controlDestinos.destroy(destino);
     }
 
@@ -210,4 +222,18 @@ public class Control {
     public long getPopularidadTipo(String tipo) {
         return controlDestinos.findCantidadTipoPopularidad(tipo);
     }
+
+    public List<Favoritos> getListFav(Usuarios usuario) {
+        return controlFavorite.findFavoritosList(usuario);
+    }
+
+    public List<ViajesPorHacer> getListViajes(Usuarios usuario) {
+        return controlViajes.findViajesPorHacerList(usuario);
+    }
+
+    public void EliminarViaje(Integer viajeId) {
+        controlViajes.destroy(viajeId);
+    }
+
+
 }

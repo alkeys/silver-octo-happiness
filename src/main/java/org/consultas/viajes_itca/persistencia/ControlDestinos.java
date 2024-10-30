@@ -2,6 +2,7 @@ package org.consultas.viajes_itca.persistencia;
 
 import org.consultas.viajes_itca.entity.Destinos;
 import org.consultas.viajes_itca.entity.Favoritos;
+import org.consultas.viajes_itca.entity.Usuarios;
 
 import javax.persistence.EntityManagerFactory;
 import java.util.List;
@@ -49,4 +50,6 @@ public class ControlDestinos extends AbstractJpaController<Destinos> {
         destinosJpaController = new DestinosJpaController(emf);
         return destinosJpaController.findCantidadTipoPopularidad(tipo);
     }
+
+
 }

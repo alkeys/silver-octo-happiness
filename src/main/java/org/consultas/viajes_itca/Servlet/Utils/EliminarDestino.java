@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.consultas.viajes_itca.control.Control;
 import org.consultas.viajes_itca.entity.Destinos;
+import org.consultas.viajes_itca.entity.Favoritos;
 
 import java.io.IOException;
 import java.util.List;

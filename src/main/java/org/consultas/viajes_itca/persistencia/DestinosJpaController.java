@@ -119,6 +119,8 @@ public class DestinosJpaController implements Serializable {
         }
     }
 
+
+
     public int getDestinosCount() {
         EntityManager em = getEntityManager();
         try {
