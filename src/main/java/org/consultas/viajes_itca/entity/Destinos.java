@@ -16,10 +16,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import java.io.Serializable;
 
-/**
- *
- * @author alex
- */
+
 @Entity
 @Table(name = "destinos")
 @NamedQueries({

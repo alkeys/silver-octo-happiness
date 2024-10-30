@@ -16,10 +16,7 @@ import org.consultas.viajes_itca.entity.Favoritos;
 import org.consultas.viajes_itca.entity.Usuarios;
 import org.consultas.viajes_itca.persistencia.exceptions.NonexistentEntityException;
 
-/**
- *
- * @author alex
- */
+
 public class UsuariosJpaController implements Serializable {
 
     public UsuariosJpaController(EntityManagerFactory emf) {

@@ -17,10 +17,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
-/**
- *
- * @author alex
- */
+
 @Entity
 @Table(name = "viajes_por_hacer")
 @NamedQueries({
