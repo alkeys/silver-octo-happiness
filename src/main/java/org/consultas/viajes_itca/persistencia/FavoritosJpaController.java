@@ -20,7 +20,7 @@ import org.consultas.viajes_itca.persistencia.exceptions.NonexistentEntityExcept
 
 /**
  *
- * @author enoc
+ * @author alex
  */
 public class FavoritosJpaController implements Serializable {
 
